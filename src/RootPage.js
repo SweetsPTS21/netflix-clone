@@ -7,6 +7,8 @@ import homeContent2 from './asset/img/home-content-2.jpg'
 import homeContent3 from './asset/img/home-content-3.jpg'
 import homeContent4 from './asset/img/home-content-4.png'
 import { ArrowDownOutlined } from '@ant-design/icons'
+import HomeQuestion from './components/home/question'
+import HomeHeader from './components/home/header'
 
 const RootPage = () => {
     const content = [
@@ -39,38 +41,6 @@ const RootPage = () => {
             image: homeContent4
         }
     ]
-    const Header = () => {
-        return (
-            <Layout.Header id={'home-header'} className={'main-layout'}>
-                <div className={'flex justify-between items-center'}>
-                    <div className={'w-[120px] h-[64px]'}>
-                        <img
-                            src={mainLogo}
-                            alt={'Netflix logo'}
-                            className={'w-full h-full'}
-                        />
-                    </div>
-                    <div className={'flex gap-4'}>
-                        <Select className={'text-white'} defaultValue={'vi'}>
-                            <Select.Option value={'vi'}>
-                                Tiếng Việt
-                            </Select.Option>
-                            <Select.Option value={'en'}>
-                                Tiếng Anh
-                            </Select.Option>
-                        </Select>
-                        <Button
-                            className={
-                                'text-white bg-red-500 px-4 rounded-full'
-                            }
-                        >
-                            Sign In
-                        </Button>
-                    </div>
-                </div>
-            </Layout.Header>
-        )
-    }
 
     return (
         <div className={'root-layout'}>
@@ -81,7 +51,7 @@ const RootPage = () => {
                     backgroundImage: `url(${rootBG})`
                 }}
             >
-                <Header />
+                <HomeHeader />
                 <Layout.Content className={'main-layout'}>
                     <div className={'flex justify-between w-full h-full'}>
                         <div
@@ -100,29 +70,31 @@ const RootPage = () => {
                             <h2 className={'text-2xl font-medium'}>
                                 Xem ở mọi nơi. Hủy bất kỳ lúc nào.
                             </h2>
-                            <p className={'text-lg font-light'}>
+                            <p className={'text-lg font-semibold'}>
                                 Bạn đã sẵn sàng xem chưa? Nhập email để tạo hoặc
                                 kích hoạt lại tư cách thành viên của bạn.
                             </p>
                             <div className={'flex gap-4'}>
                                 <input
                                     type={'text'}
-                                    placeholder={'Email address'}
+                                    placeholder={'Địa chỉ email'}
                                     className={
                                         'w-[400px] h-[50px] px-4 rounded-md text-black'
                                     }
                                 />
                                 <Button
+                                    type={'primary'}
                                     className={
-                                        'text-white bg-red-500 px-4 rounded-md'
+                                        'text-white px-4 rounded-md h-full text-2xl'
                                     }
                                 >
-                                    Get Started
+                                    Bắt đầu
                                 </Button>
                             </div>
                         </div>
                     </div>
                     <Button
+                        type={'text'}
                         className={'scroll-down-button'}
                         onClick={() => {
                             document
@@ -172,6 +144,11 @@ const RootPage = () => {
                         </div>
                     )
                 })}
+            </div>
+            <div className={'flex flex-col gap-2'} id={'home-question'}>
+                <div className={'flex justify-center root-content'}>
+                    <HomeQuestion />
+                </div>
             </div>
             <BackTop />
         </div>

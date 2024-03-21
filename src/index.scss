@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open + Sans:300, 400, 700');
 @import url('https://fonts.googleapis.com/icon?family=Material + Icons');
-@import "./style/layout/layout.css";
-@import "./style/override/override.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @font-face {
   font-family: 'Helvetica Neue';
@@ -9,9 +11,7 @@
   font-weight: 400;
     src: url('../public/HelveticaNeue-Medium.otf') format('opentype');
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 body {
   margin: 0;
@@ -26,5 +26,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import "style/home/home";
+@import "style/layout/layout";
+@import "style/override/override";
 
 

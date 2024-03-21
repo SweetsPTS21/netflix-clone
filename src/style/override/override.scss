@@ -1,0 +1,52 @@
+.ant-btn {
+    padding: 0 20px;
+    border: none;
+}
+
+.ant-btn-default {
+    background: #E50914FF;
+    color: #fff;
+    border: none;
+}
+
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    background: #AF060FFF;
+    color: #fff;
+    border: none;
+}
+
+.ant-btn-primary {
+    background: #E50914FF;
+    color: #fff;
+    border: none;
+}
+
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+    background: #AF060FFF;
+    color: #fff;
+    border: none;
+}
+
+.ant-btn-primary:active {
+    background-color: #AF060FFF;
+    color: #fff;
+    border: none;
+}
+
+.ant-layout-header {
+    height: 112px;
+}
+
+.ant-collapse .ant-collapse-item .ant-collapse-header {
+    color: unset;
+    background: #353535;
+}
+
+.ant-collapse-borderless .ant-collapse-item .ant-collapse-content {
+    color: unset;
+    background-color: #353535;
+}
+
+.ant-collapse .ant-collapse-item:last-child .ant-collapse-content {
+    border-radius: 0;
+}
