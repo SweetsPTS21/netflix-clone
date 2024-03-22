@@ -9,12 +9,20 @@
     height: 100vh;
     position: absolute;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+}
+
+.root-image {
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .root-content {
     display: flex;
     width: 100%;
-    height: 578px;
     padding: 4.5rem 0;
     background: black;
 }
@@ -27,10 +35,8 @@
 }
 
 .main-layout {
-    width: 65%;
     margin: 0 auto;
     padding: 24px;
-    background: transparent;
     box-shadow: 0 1px 4px rgba(0,21,41,.08);
     z-index: 100;
 }

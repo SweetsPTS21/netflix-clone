@@ -1,3 +1,19 @@
+//===================== input override =================//
+.ant-input {
+    border-radius: 6px;
+}
+
+//.ant-input-outlined {
+//    background: rgba(22, 22, 22, 0.7);
+//    border-color: rgba(128, 128, 128, 0.7);
+//}
+
+.ant-input-outlined.ant-input-status-error:not(.ant-input-disabled) {
+    //background: rgba(22, 22, 22, 0.7);
+    border-color: #E50914FF;
+}
+
+//================= button override =================//
 .ant-btn {
     padding: 0 20px;
     border: none;
@@ -19,24 +35,30 @@
     background: #E50914FF;
     color: #fff;
     border: none;
+    border-radius: 6px;
 }
 
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     background: #AF060FFF;
     color: #fff;
     border: none;
+    border-radius: 6px;
 }
 
 .ant-btn-primary:active {
     background-color: #AF060FFF;
     color: #fff;
     border: none;
+    border-radius: 6px;
 }
 
+//========================= layout override =================//
 .ant-layout-header {
     height: 112px;
 }
 
+
+//========================= layout collapse =================//
 .ant-collapse .ant-collapse-item .ant-collapse-header {
     color: unset;
     background: #353535;
@@ -49,4 +71,13 @@
 
 .ant-collapse .ant-collapse-item:last-child .ant-collapse-content {
     border-radius: 0;
+}
+
+//=========================== select override =====================//
+.ant-select-single .ant-select-selector {
+    color: #fff;
+}
+
+.ant-select .ant-select-arrow {
+    color: #fff;
 }
