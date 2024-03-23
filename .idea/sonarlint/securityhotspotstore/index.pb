@@ -6,7 +6,7 @@
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 B
-src/context/app.js,b/a/ba1c6a9633e85be768a4348ec52a7a9e705d26cb
+src/context/app.js,b\a\ba1c6a9633e85be768a4348ec52a7a9e705d26cb
 :
 
 src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
@@ -76,11 +76,19 @@ N
 src/style/profile/profile.scss,2\e\2e05b9405908348d2d58660071745a6eed3fe4de
 B
 src/style/note.txt,d\c\dc4f4c9a2ad07f174a86fd6f91e78b7dd0487c48
-L
-src/resource/profile/edit.js,f\f\ffd0b446b687542d94e546686d91508413cfdb09
 N
 src/components/profile/edit.js,8\3\83180dd3bf3bdf6de8b8e367234c6e6ffacd1950
 Q
 !src/components/profile/content.js,6\8\682199ebeb06a6b1799ecab2956d28f33dba2bd1
 M
 src/resource/common/common.js,d\0\d088040b6abdedfafad6e6122a80b131fff3c695
+<
+netlify.toml,b\7\b7603b2d52a305d1420312b2b0a2086a7fee9bf7
+A
+public/_redirects,2\3\23775fff9b8562e83258540491a380fe4b133207
+A
+public/index.html,f\4\f43ecdf8d666ee908aacce037b4cd72159e4741b
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
