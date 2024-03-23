@@ -1,9 +1,0 @@
-button: {
-
-}
-
-button-secondary: {
-    defaultActiveBg: '#1f1f1f',
-    defaultHoverBg: '#1f1f1f',
-    defaultHoverBorderColor: '#353535'
-}
