@@ -47,6 +47,6 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v1
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GH_TOKEN }}
         cartesian-product: gh-pages
         single-branch: true
