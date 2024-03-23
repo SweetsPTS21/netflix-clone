@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Layout, Popover, Steps, theme, message } from 'antd'
+import { Button, Layout, Popover, Steps } from 'antd'
 import PropTypes from 'prop-types'
 import Step1 from './steps/step1'
 import Step2 from './steps/step2'
@@ -10,7 +10,7 @@ const customDot = (dot, { status, index }) => (
     <Popover
         content={
             <span>
-                step {index} status: {status}
+                Bước {index + 1}: {status}
             </span>
         }
     >
@@ -18,32 +18,28 @@ const customDot = (dot, { status, index }) => (
     </Popover>
 )
 
-const signupContent = [
-    {
-        title: 'Bước 1',
-        content: <Step1 />
-    },
-    {
-        title: 'Bước 2',
-        content: <Step2 />
-    },
-    {
-        title: 'Bước 3',
-        content: <Step3 />
-    }
-]
-
 const SignupContent = (props) => {
-    const { token } = theme.useToken()
     const [current, setCurrent] = useState(0)
     const [completed, setCompleted] = useState(false)
 
     const next = () => {
         setCurrent(current + 1)
     }
-    const prev = () => {
-        setCurrent(current - 1)
-    }
+
+    const signupContent = [
+        {
+            title: 'Bước 1',
+            content: <Step1 />
+        },
+        {
+            title: 'Bước 2',
+            content: <Step2 onOk={next} />
+        },
+        {
+            title: 'Bước 3',
+            content: <Step3 />
+        }
+    ]
 
     const items = signupContent.map((item) => ({
         key: item.title,
@@ -60,7 +56,7 @@ const SignupContent = (props) => {
                 {current < signupContent.length && (
                     <div
                         className={
-                            'bg-white pt-5 px-8 pb-16 m-auto max-w-[500px]'
+                            'bg-white pt-8 px-8 pb-16 m-auto max-w-[500px]'
                         }
                     >
                         <Steps
@@ -72,40 +68,30 @@ const SignupContent = (props) => {
                         <div>{signupContent[current].content}</div>
 
                         <div
-                            style={{
-                                marginTop: 24
-                            }}
+                            className={'flex items-center justify-center mt-8'}
                         >
-                            {current < signupContent.length - 1 && (
-                                <Button
-                                    size={'large'}
-                                    type="primary"
-                                    onClick={() => next()}
-                                >
-                                    Next
-                                </Button>
-                            )}
+                            {current < signupContent.length - 1 &&
+                                current !== 1 && (
+                                    <Button
+                                        size={'large'}
+                                        type="primary"
+                                        className={'btn-large'}
+                                        onClick={() => next()}
+                                    >
+                                        Next
+                                    </Button>
+                                )}
                             {current === signupContent.length - 1 && (
                                 <Button
                                     size={'large'}
                                     type="primary"
+                                    className={'btn-large'}
                                     onClick={() => {
                                         next()
                                         setCompleted(true)
                                     }}
                                 >
                                     Done
-                                </Button>
-                            )}
-                            {current > 0 && (
-                                <Button
-                                    size={'large'}
-                                    style={{
-                                        margin: '0 8px'
-                                    }}
-                                    onClick={() => prev()}
-                                >
-                                    Previous
                                 </Button>
                             )}
                         </div>

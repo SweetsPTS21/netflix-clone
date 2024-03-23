@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ConfigProvider, Form, Input } from 'antd'
+import { Button, Form, Input } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 
 const HomeSubscribe = () => {
@@ -39,7 +39,9 @@ const HomeSubscribe = () => {
                     <Input
                         type={'text'}
                         placeholder={'Địa chỉ email'}
-                        className={'h-[50px] px-4 text-white'}
+                        className={
+                            'h-[50px] px-4 text-white input-outlined-dark'
+                        }
                     />
                 </Form.Item>
                 <Button

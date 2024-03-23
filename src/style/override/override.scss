@@ -15,40 +15,34 @@
 
 //================= button override =================//
 .ant-btn {
-    padding: 0 20px;
     border: none;
 }
 
 .ant-btn-default {
     background: #E50914FF;
     color: #fff;
-    border: none;
 }
 
 .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
-    background: #AF060FFF;
+    //background: #AF060FFF;
     color: #fff;
-    border: none;
 }
 
 .ant-btn-primary {
     background: #E50914FF;
     color: #fff;
-    border: none;
     border-radius: 6px;
 }
 
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     background: #AF060FFF;
     color: #fff;
-    border: none;
     border-radius: 6px;
 }
 
 .ant-btn-primary:active {
     background-color: #AF060FFF;
     color: #fff;
-    border: none;
     border-radius: 6px;
 }
 
@@ -79,5 +73,24 @@
 }
 
 .ant-select .ant-select-arrow {
+    color: #fff;
+}
+
+.ant-select-selection-item {
+    color: #fff;
+}
+
+.ant-form-vertical .ant-form-item-label >label {
+    color: #fff;
+}
+
+//=========================== card override =====================//
+.ant-card .ant-card-head {
+    padding: 0;
+    margin: 0;
+}
+
+//=========================== modal override =====================//
+.ant-modal-close-x {
     color: #fff;
 }

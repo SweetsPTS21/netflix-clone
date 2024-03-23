@@ -3,16 +3,6 @@ import { Collapse } from 'antd'
 import HomeSubscribe from './subscribe'
 import { homeQuestions } from '../../resource/home/home'
 
-function getItem(label, key, icon, children, type) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        type
-    }
-}
-
 const HomeQuestion = (props) => {
     return (
         <div className={'flex flex-col w-[60%] gap-4 justify-center'}>

@@ -6,8 +6,8 @@ import Error403 from './common/error/Error403'
 import './App.scss'
 import SettingRouter from './components/setting/Router'
 import LoginPage from './components/login'
-import Signup from './components/signup'
 import SignupPage from './components/signup'
+import Profile from './components/profile'
 
 function App() {
     return (
@@ -19,6 +19,7 @@ function App() {
                         <Route path="forbidden" element={<Error403 />} />
                     </Route>
                     <Route path="login" element={<LoginPage />} />
+                    <Route path="profile" element={<Profile />} />
                     <Route path="signup" element={<SignupPage />} />
                     <Route path="403" element={<Error403 href={BASE_HOME} />} />
                 </Routes>

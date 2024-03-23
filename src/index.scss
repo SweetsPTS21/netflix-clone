@@ -27,10 +27,13 @@ code {
     monospace;
 }
 
+@import "style/override/override";
+@import "style/common/common";
 @import "style/home/home";
 @import "style/login/login";
 @import "style/signup/signup";
 @import "style/layout/layout";
-@import "style/override/override";
+@import "style/profile/profile";
+
 
 

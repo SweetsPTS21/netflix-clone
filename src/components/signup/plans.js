@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Col, Divider, Row } from 'antd'
 import { plans } from '../../resource/signup/signup'
+import { CheckCircleOutlined } from '@ant-design/icons'
 
 const SignupPlans = () => {
-    const CardTitle = ({ title }) => {
+    const [selectedPlan, setSelectedPlan] = useState(plans[0].id)
+
+    const CardTitle = ({ title, isSelected }) => {
         return (
             <div className={'card-title'}>
+                {isSelected && (
+                    <>
+                        <div className={'card-selected'}></div>
+                        <CheckCircleOutlined
+                            style={{
+                                position: 'absolute',
+                                top: '5px',
+                                right: '5px',
+                                fontSize: '20px'
+                            }}
+                        />
+                    </>
+                )}
                 <p>{title}</p>
             </div>
         )
@@ -24,7 +40,7 @@ const SignupPlans = () => {
     }
 
     return (
-        <div className={'w-[70%] p-12'}>
+        <div className={'w-[70%] max-w-[80rem] p-12'}>
             <p className={'text-4xl text-center mb-12'}>
                 Chọn gói dịch vụ của bạn
             </p>
@@ -32,9 +48,25 @@ const SignupPlans = () => {
                 {plans?.map((plan) => (
                     <Col span={6} key={plan.id}>
                         <Card
-                            title={<CardTitle title={plan.title} />}
+                            title={
+                                <CardTitle
+                                    title={plan.title}
+                                    isSelected={selectedPlan === plan.id}
+                                />
+                            }
                             bordered={true}
                             hoverable={true}
+                            className={'relative'}
+                            onClick={() => {
+                                setSelectedPlan(plan.id)
+                            }}
+                            style={
+                                selectedPlan === plan.id
+                                    ? {
+                                          border: '2px solid #e50914'
+                                      }
+                                    : null
+                            }
                         >
                             <CardDescription description={plan.description} />
                         </Card>

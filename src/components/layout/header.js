@@ -48,7 +48,7 @@ const Header = (props) => {
                             </Select>
                         )}
                         <Link to={'/login'}>
-                            <Button className={'text-white bg-red-500 px-4'}>
+                            <Button type={'primary'} className={'px-4'}>
                                 Đăng nhập
                             </Button>
                         </Link>

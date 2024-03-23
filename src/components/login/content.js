@@ -42,7 +42,7 @@ const LoginContent = () => {
                                 <Input
                                     size={'large'}
                                     placeholder={'Email hoặc số điện thoại'}
-                                    className={'text-white'}
+                                    className={'input-outlined-dark text-white'}
                                 />
                             </Form.Item>
                             <Form.Item
@@ -58,7 +58,7 @@ const LoginContent = () => {
                                 <Input.Password
                                     size={'large'}
                                     placeholder={'Mật khẩu'}
-                                    className={'text-white'}
+                                    className={'input-outlined-dark text-white'}
                                 />
                             </Form.Item>
 

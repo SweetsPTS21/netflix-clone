@@ -1,18 +1,37 @@
 import React from 'react'
 import { Button, Form, Input } from 'antd'
+import { emailRegex } from '../../../resource/common/common'
 
-const Step2 = () => {
+const Step2 = (props) => {
     const [form] = Form.useForm()
 
     const onFinish = (values) => {
-        console.log('Received values of form: ', values)
+        if (props.onOk) {
+            props.onOk()
+        }
+    }
+
+    const emailValidator = (rule, value) => {
+        if (!value || !value.matches(emailRegex)) {
+            return Promise.reject('Email không hợp lệ!')
+        }
+        return Promise.resolve()
+    }
+
+    const passwordValidator = (rule, value) => {
+        if (!value || value.length < 4 || value.length > 60) {
+            return Promise.reject(
+                'Mật khẩu của bạn phải chứa từ 4 đến 60 ký tự!'
+            )
+        }
+        return Promise.resolve()
     }
 
     const rePasswordValidator = (rule, value) => {
-        if (!value || form.getFieldValue('password') === value) {
-            return Promise.resolve()
+        if (!value || form.getFieldValue('password') !== value) {
+            return Promise.reject('Mật khẩu không khớp!')
         }
-        return Promise.reject('Mật khẩu không khớp!')
+        return Promise.resolve()
     }
 
     return (
@@ -33,9 +52,8 @@ const Step2 = () => {
                     name="email"
                     rules={[
                         {
-                            required: true,
-                            message:
-                                'Vui lòng nhập email hoặc số điện thoại hợp lệ!'
+                            validator: (rule, value) =>
+                                emailValidator(rule, value)
                         }
                     ]}
                 >
@@ -45,9 +63,8 @@ const Step2 = () => {
                     name="password"
                     rules={[
                         {
-                            required: true,
-                            message:
-                                'Mật khẩu của bạn phải chứa từ 4 đến 60 ký tự!'
+                            validator: (rule, value) =>
+                                passwordValidator(rule, value)
                         }
                     ]}
                 >
@@ -57,7 +74,6 @@ const Step2 = () => {
                     name="confirmPassword"
                     rules={[
                         {
-                            required: true,
                             validator: (rule, value) =>
                                 rePasswordValidator(rule, value)
                         }
@@ -73,6 +89,7 @@ const Step2 = () => {
             <Button
                 type="primary"
                 htmlType="submit"
+                className={'btn-large'}
                 onClick={() => {
                     form.submit()
                 }}
