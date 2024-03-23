@@ -22,19 +22,6 @@ const AppContextProvider = ({ children }) => {
         }
     }
 
-    const handleOpenWarning = (onCancel) => {
-        if (
-            window.confirm(
-                'Bạn đang chỉnh sửa dữ liệu. Nếu thoát ra ngoài, dữ liệu sẽ bị mất. Bạn vẫn muốn thoát?'
-            )
-        ) {
-            if (onCancel) {
-                onCancel()
-            }
-            handleRemoveIsEditingForm()
-        }
-    }
-
     const handleAgree = () => {
         setAgree(true)
         setOpenWarning(false)
@@ -42,6 +29,19 @@ const AppContextProvider = ({ children }) => {
     }
 
     const getValuesContext = useMemo(() => {
+        const handleOpenWarning = (onCancel) => {
+            if (
+                window.confirm(
+                    'Bạn đang chỉnh sửa dữ liệu. Nếu thoát ra ngoài, dữ liệu sẽ bị mất. Bạn vẫn muốn thoát?'
+                )
+            ) {
+                if (onCancel) {
+                    onCancel()
+                }
+                handleRemoveIsEditingForm()
+            }
+        }
+
         return {
             handleRemoveIsEditingForm,
             handleSetIsEditingForm,
@@ -51,7 +51,6 @@ const AppContextProvider = ({ children }) => {
             openWarning,
             setOpenWarning,
             handleOpenWarning,
-            handleAgree,
             agree,
             setAgree
         }
