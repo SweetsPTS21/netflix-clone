@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Col, Form, Input, Modal, Row, Select } from 'antd'
 import { profiles } from '../../resource/profile/profile'
 import PropTypes from 'prop-types'
 import { EditOutlined } from '@ant-design/icons'
 
 const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
-    const [isSelectingAvatar, setIsSelectingAvatar] = useState(false)
-
     return (
         <Modal
             title={<p className={'text-2xl ml-4'}>Chỉnh sửa hồ sơ</p>}
@@ -35,12 +33,7 @@ const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
                                     backgroundColor: 'rgba(0, 0, 0, 0.5)'
                                 }}
                             >
-                                <div
-                                    className={'edit-outlined'}
-                                    onClick={() => {
-                                        setIsSelectingAvatar(true)
-                                    }}
-                                >
+                                <div className={'edit-outlined'}>
                                     <EditOutlined />
                                 </div>
                             </div>
