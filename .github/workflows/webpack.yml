@@ -35,6 +35,14 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+        
+    permissions:
+      pages: write
+      id-token: write
+      
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
     - uses: actions/checkout@v3
@@ -45,8 +53,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v1
-      with:
-        github-token: ${{ secrets.GH_TOKEN }}
-        cartesian-product: gh-pages
-        single-branch: true
+      id: deployment
+      uses: actions/deploy-pages@v4
