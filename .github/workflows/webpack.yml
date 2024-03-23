@@ -45,10 +45,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}  # Use a GitHub token with deploy permissions
-          cartesian-product: gh-pages  # Assuming your built files are in the "build" folder
-          single-branch: true  # Only deploy to the "gh-pages" branch (if using it)
+      uses: actions/deploy-pages@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}  # Use a GitHub token with deploy permissions
+        cartesian-product: gh-pages  # Assuming your built files are in the "build" folder
+        single-branch: true  # Only deploy to the "gh-pages" branch (if using it)
     
       
