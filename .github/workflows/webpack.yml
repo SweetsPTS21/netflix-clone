@@ -22,6 +22,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
+    - name: Install Dependences
+      run: |
+        npm install
+        
+    - name: Build 
       run: |
         npm run build
