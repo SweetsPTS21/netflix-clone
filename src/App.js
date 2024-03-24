@@ -8,6 +8,7 @@ import SettingRouter from './components/setting/Router'
 import LoginPage from './components/login'
 import SignupPage from './components/signup'
 import Profile from './components/profile'
+import Browse from './components/browse'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="login" element={<LoginPage />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="signup" element={<SignupPage />} />
+                    <Route path="browse/*" element={<Browse />} />
                     <Route path="403" element={<Error403 href={BASE_HOME} />} />
                 </Routes>
             </BrowserRouter>

@@ -12,7 +12,7 @@ const Step2 = (props) => {
     }
 
     const emailValidator = (rule, value) => {
-        if (!value || !value.matches(emailRegex)) {
+        if (!value || !emailRegex.test(value)) {
             return Promise.reject('Email không hợp lệ!')
         }
         return Promise.resolve()
