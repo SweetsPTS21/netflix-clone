@@ -75,3 +75,23 @@
     }
 }
 
+@keyframes move-right {
+    0% {
+        transform: translateX(-4.5rem);
+    }
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+@keyframes move-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-4.5rem);
+    }
+
+}
+
