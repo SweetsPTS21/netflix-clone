@@ -9,7 +9,7 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
         <div className={'w-[22rem] movie-details'}>
             <Card
                 bordered={false}
-                className={'w-full h-full rounded carousel-card'}
+                className={'w-full h-full rounded-lg carousel-card'}
                 cover={
                     <img
                         src={witcher}
@@ -18,19 +18,31 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
                     />
                 }
                 actions={[
-                    <div key={movie?.id} className={'flex justify-between'}>
+                    <div
+                        key={movie?.id}
+                        className={'flex justify-between py-4'}
+                    >
                         <div
                             className={
                                 'flex items-center gap-4 text-white px-4'
                             }
                         >
                             <ButtonIcon icon={'play'} onClick={() => {}} />
-                            <ButtonIcon icon={'plus'} onClick={() => {}} />
-                            <ButtonIcon icon={'like'} onClick={() => {}} />
+                            <ButtonIcon
+                                icon={'plus'}
+                                tooltip={'Add to My List'}
+                                onClick={() => {}}
+                            />
+                            <ButtonIcon
+                                icon={'like'}
+                                tooltip={'I like this'}
+                                onClick={() => {}}
+                            />
                         </div>
                         <div className={'text-white px-4'}>
                             <ButtonIcon
                                 icon={'down'}
+                                tooltip={'More Info'}
                                 onClick={() => {
                                     if (setOpenModal) {
                                         setOpenModal(true)

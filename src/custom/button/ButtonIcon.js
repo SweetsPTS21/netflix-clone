@@ -13,8 +13,8 @@ import PropTypes from 'prop-types'
 
 const BaseButton = ({ onClick, text, icon, style, iconStyle }) => {
     const buttonStyle = {
-        width: '2.5rem',
-        height: '2.5rem',
+        width: '3rem',
+        height: '3rem',
         color: 'white',
         fontSize: '1.125rem',
         lineHeight: '1.75rem',
@@ -78,15 +78,16 @@ const ButtonIcon = ({ icon, text, onClick, tooltip, style, iconStyle }) => {
                     overlayInnerStyle={{
                         fontSize: '1.2rem'
                     }}
-                    zIndex={1200}
                 >
-                    <BaseButton
-                        icon={icon}
-                        text={text}
-                        onClick={onClick}
-                        style={style}
-                        iconStyle={iconStyle}
-                    />
+                    <div>
+                        <BaseButton
+                            icon={icon}
+                            text={text}
+                            onClick={onClick}
+                            style={style}
+                            iconStyle={iconStyle}
+                        />
+                    </div>
                 </Tooltip>
             ) : (
                 <BaseButton

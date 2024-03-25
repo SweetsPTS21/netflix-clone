@@ -4,10 +4,11 @@ import witcher from '../../../assets/img/witcher.jpg'
 import MovieInfo from './info'
 import Episodes from './episodes'
 import PropTypes from 'prop-types'
-import Suggest from './suggest'
+import Index from './suggest'
 import About from './about'
 import { CaretRightFilled } from '@ant-design/icons'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
+import Suggest from './suggest'
 
 const MovieModal = ({ openModal, setOpenModal }) => {
     const [mute, setMute] = useState(false)
@@ -18,11 +19,13 @@ const MovieModal = ({ openModal, setOpenModal }) => {
             onCancel={() => setOpenModal(null)}
             centered={true}
             width={850}
-            className={'movie-modal-root'}
+            style={{
+                top: '2rem'
+            }}
             zIndex={1100}
             footer={null}
             closeIcon={
-                <div className={'absolute top-2 right-2'}>
+                <div className={'absolute top-6 right-6'}>
                     <ButtonIcon
                         icon={'close'}
                         onClick={() => setOpenModal(null)}
@@ -42,7 +45,7 @@ const MovieModal = ({ openModal, setOpenModal }) => {
                     <img
                         src={witcher}
                         alt={'movie'}
-                        className={'w-full h-[32rem]'}
+                        className={'w-full h-[32rem] rounded-lg'}
                     />
                     <div className={'movie-actions'}>
                         <div className={'flex gap-4'}>

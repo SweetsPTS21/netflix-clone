@@ -3,6 +3,7 @@ import { profiles } from '../../resource/profile/profile'
 import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const ProfileContent = ({
     editProfile,
@@ -23,31 +24,34 @@ const ProfileContent = ({
                         key={profile.id}
                         className={'flex flex-col items-center'}
                     >
-                        <div className={'relative'}>
-                            <img
-                                className={'w-full h-full'}
-                                src={profile.image}
-                                alt={profile.name}
-                            />
-                            {editProfile && (
-                                <div
-                                    className={'edit-profile'}
-                                    style={{
-                                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-                                    }}
-                                >
+                        <Link to={'/browse'}>
+                            <div className={'relative'}>
+                                <img
+                                    className={'w-full h-full'}
+                                    src={profile.image}
+                                    alt={profile.name}
+                                />
+                                {editProfile && (
                                     <div
-                                        className={'edit-outlined'}
-                                        onClick={() => {
-                                            setIsEditing(true)
-                                            setCurrProfile(profile)
+                                        className={'edit-profile'}
+                                        style={{
+                                            backgroundColor:
+                                                'rgba(0, 0, 0, 0.5)'
                                         }}
                                     >
-                                        <EditOutlined />
+                                        <div
+                                            className={'edit-outlined'}
+                                            onClick={() => {
+                                                setIsEditing(true)
+                                                setCurrProfile(profile)
+                                            }}
+                                        >
+                                            <EditOutlined />
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
+                                )}
+                            </div>
+                        </Link>
                         <p className={'text-white mt-4 text-xl truncate'}>
                             {profile?.name}
                         </p>

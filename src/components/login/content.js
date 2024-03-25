@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Input, Layout } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginContent = () => {
     const [form] = Form.useForm()
+    const navigate = useNavigate()
     const [rememberMe, setRememberMe] = useState(true)
 
     const onFinish = (values) => {
-        console.log(values)
+        navigate('/profile')
     }
 
     return (
