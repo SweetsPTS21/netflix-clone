@@ -3,13 +3,18 @@ import witcher from '../../../asset/img/witcher.jpg'
 import React from 'react'
 import CarouselPopover from './Popover'
 
-const CarouselRow = ({ items }) => {
+const CarouselRow = ({ items, setOpenModal }) => {
     return (
         <Row gutter={16} className={'h-40 px-8 pt-6'}>
             {items?.map((item, index) => (
                 <Col key={index} span={24 / items?.length}>
                     <Popover
-                        content={<CarouselPopover movie={item} />}
+                        content={
+                            <CarouselPopover
+                                movie={item}
+                                setOpenModal={setOpenModal}
+                            />
+                        }
                         arrow={false}
                         trigger={'hover'}
                         placement={'topLeft'}

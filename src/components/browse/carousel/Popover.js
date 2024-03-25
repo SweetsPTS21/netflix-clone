@@ -7,7 +7,7 @@ import {
     PlusOutlined
 } from '@ant-design/icons'
 import React from 'react'
-const CarouselPopover = ({ movie }) => {
+const CarouselPopover = ({ movie, setOpenModal }) => {
     return (
         <div className={'w-44 movie-details'}>
             <Card
@@ -57,7 +57,13 @@ const CarouselPopover = ({ movie }) => {
                                     fontSize: '1.2rem'
                                 }}
                             >
-                                <DownCircleOutlined />
+                                <DownCircleOutlined
+                                    onClick={() => {
+                                        if (setOpenModal) {
+                                            setOpenModal(true)
+                                        }
+                                    }}
+                                />
                             </Tooltip>
                         </div>
                     </div>

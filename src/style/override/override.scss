@@ -104,6 +104,10 @@
 
 
 //=========================== modal override =====================//
+.ant-modal .ant-modal-content {
+    padding: 0;
+}
+
 .ant-modal-close-x {
     color: #fff;
 }
