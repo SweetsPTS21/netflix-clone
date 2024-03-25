@@ -43,7 +43,8 @@ const CarouselRow = ({ items, setOpenModal }) => {
 }
 
 CarouselRow.propTypes = {
-    items: PropTypes.array
+    items: PropTypes.array,
+    setOpenModal: PropTypes.func
 }
 
 export default CarouselRow

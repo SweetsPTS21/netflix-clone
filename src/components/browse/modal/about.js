@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography } from 'antd'
+import PropTypes from 'prop-types'
 
 const About = ({ movie }) => {
     return (
@@ -35,4 +36,7 @@ const About = ({ movie }) => {
     )
 }
 
+About.propTypes = {
+    movie: PropTypes.object
+}
 export default About

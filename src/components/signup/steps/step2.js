@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form, Input } from 'antd'
 import { emailRegex } from '../../../resource/common/common'
+import PropTypes from 'prop-types'
 
 const Step2 = (props) => {
     const [form] = Form.useForm()
@@ -13,7 +14,7 @@ const Step2 = (props) => {
 
     const emailValidator = (rule, value) => {
         if (!value || !emailRegex.test(value)) {
-            return Promise.reject('Email không hợp lệ!')
+            return Promise.reject(new Error('Email không hợp lệ!'))
         }
         return Promise.resolve()
     }
@@ -21,7 +22,7 @@ const Step2 = (props) => {
     const passwordValidator = (rule, value) => {
         if (!value || value.length < 4 || value.length > 60) {
             return Promise.reject(
-                'Mật khẩu của bạn phải chứa từ 4 đến 60 ký tự!'
+                new Error('Mật khẩu của bạn phải chứa từ 4 đến 60 ký tự!')
             )
         }
         return Promise.resolve()
@@ -29,7 +30,7 @@ const Step2 = (props) => {
 
     const rePasswordValidator = (rule, value) => {
         if (!value || form.getFieldValue('password') !== value) {
-            return Promise.reject('Mật khẩu không khớp!')
+            return Promise.reject(new Error('Mật khẩu không khớp!'))
         }
         return Promise.resolve()
     }
@@ -98,6 +99,10 @@ const Step2 = (props) => {
             </Button>
         </Form>
     )
+}
+
+Step2.propTypes = {
+    onOk: PropTypes.func
 }
 
 export default Step2

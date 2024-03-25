@@ -91,7 +91,8 @@ const Carousels = ({ title, data, setOpenModal }) => {
 
 Carousels.propTypes = {
     title: PropTypes.string,
-    data: PropTypes.array
+    data: PropTypes.array,
+    setOpenModal: PropTypes.func
 }
 
 Carousels.defaultProps = {

@@ -1,43 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Card, Col, Divider, Row } from 'antd'
-import { plans } from '../../resource/signup/signup'
-import { CheckCircleOutlined } from '@ant-design/icons'
+import { Button, Card, Col, Row } from 'antd'
+import { plans } from '../../../resource/signup/signup'
+import CardTitle from './CardTitle'
+import CardDescription from './CardDes'
 
 const SignupPlans = () => {
     const [selectedPlan, setSelectedPlan] = useState(plans[0].id)
-
-    const CardTitle = ({ title, isSelected }) => {
-        return (
-            <div className={'card-title'}>
-                {isSelected && (
-                    <>
-                        <div className={'card-selected'}></div>
-                        <CheckCircleOutlined
-                            style={{
-                                position: 'absolute',
-                                top: '5px',
-                                right: '5px',
-                                fontSize: '20px'
-                            }}
-                        />
-                    </>
-                )}
-                <p>{title}</p>
-            </div>
-        )
-    }
-
-    const CardDescription = ({ description }) => {
-        return description?.map((item) => (
-            <div className={'px-4'}>
-                <div key={item.title}>
-                    <p className={'text-sm text-gray-500'}>{item.title}</p>
-                    <p className={'text-lg'}>{item.content}</p>
-                </div>
-                <Divider />
-            </div>
-        ))
-    }
 
     return (
         <div className={'w-[70%] max-w-[80rem] p-12'}>
