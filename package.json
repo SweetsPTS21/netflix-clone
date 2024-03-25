@@ -2,7 +2,6 @@
   "name": "netflix-clone",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sweetspts21.github.io/netflix-clone/",
   "dependencies": {
     "@ant-design/icons": "^5.3.4",
     "@apollo/client": "^3.9.8",
