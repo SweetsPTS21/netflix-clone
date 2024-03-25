@@ -1,5 +1,5 @@
 import React from 'react'
-import devices from '../../../asset/icon/devices.png'
+import devices from '../../../assets/icon/devices.png'
 
 const Step1 = () => {
     return (

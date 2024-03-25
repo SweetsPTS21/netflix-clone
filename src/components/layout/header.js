@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Layout, Select } from 'antd'
-import mainLogo from '../../asset/icon/logo.png'
+import mainLogo from '../../assets/icon/logo.png'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 

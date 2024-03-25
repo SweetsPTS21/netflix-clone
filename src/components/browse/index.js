@@ -22,8 +22,8 @@ const Browse = () => {
                         actionsBg: '#141414'
                     },
                     Modal: {
-                        contentBg: '#1f1f1f',
-                        headerBg: '#1f1f1f',
+                        contentBg: '#181818',
+                        headerBg: '#181818',
                         titleColor: 'white'
                     }
                 },

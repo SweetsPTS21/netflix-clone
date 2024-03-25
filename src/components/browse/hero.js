@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Layout } from 'antd'
-import heroBG from '../../asset/img/hero.jpg'
-import heroContent from '../../asset/img/hero2.png'
+import heroBG from '../../assets/img/hero.jpg'
+import heroContent from '../../assets/img/hero2.png'
 import { CaretRightFilled, InfoCircleOutlined } from '@ant-design/icons'
 import Carousels from './carousel/Carousels'
 

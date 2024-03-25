@@ -1,3 +1,30 @@
 .movie-modal-root {
   padding: 0;
 }
+
+.movie-actions {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 3rem;
+  background: linear-gradient(0deg,#181818,transparent 50%)
+}
+
+.episode-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 30rem;
+  overflow: auto;
+  gap: 1rem;
+}
+
+.suggest-item {
+  max-height: 21.875rem;
+  background: #2f2f2f;
+}
+
+.about-label {
+  color: #777777;
+}

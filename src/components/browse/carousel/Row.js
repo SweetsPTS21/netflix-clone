@@ -1,7 +1,8 @@
 import { Card, Col, Popover, Row } from 'antd'
-import witcher from '../../../asset/img/witcher.jpg'
+import witcher from '../../../assets/img/witcher.jpg'
 import React from 'react'
 import CarouselPopover from './Popover'
+import PropTypes from 'prop-types'
 
 const CarouselRow = ({ items, setOpenModal }) => {
     return (
@@ -39,6 +40,10 @@ const CarouselRow = ({ items, setOpenModal }) => {
             ))}
         </Row>
     )
+}
+
+CarouselRow.propTypes = {
+    items: PropTypes.array
 }
 
 export default CarouselRow

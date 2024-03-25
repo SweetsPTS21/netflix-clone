@@ -137,22 +137,22 @@
 
 @media only screen and (min-width: 900px) {
   .movie-details {
-    width: 9rem;
+    width: 18rem;
     position: absolute;
-    left: 2rem;
+    top: -2rem;
+    left: -2rem;
     transition: opacity 0.8s ease-in-out;
-    transform: scale(2);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   }
 }
 
 @media only screen and (min-width: 1600px) {
   .movie-details {
-    width: 11rem;
+    width: 22rem;
     position: absolute;
-    left: 3rem;
+    top: -1rem;
+    left: -2rem;
     transition: opacity 0.8s ease-in-out;
-    transform: scale(2);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   }
 }

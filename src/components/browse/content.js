@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Modal } from 'antd'
+import { Layout } from 'antd'
 import Carousels from './carousel/Carousels'
 import { carousels } from '../../resource/browse/carousel'
 import MovieModal from './modal'
@@ -11,7 +11,7 @@ const BrowseContent = () => {
         <Layout.Content className={'bg-[#141414] h-max'}>
             {carousels.map((carousel, index) => (
                 <div
-                    key={index}
+                    key={carousel.id}
                     style={{
                         marginTop: '3vh'
                     }}

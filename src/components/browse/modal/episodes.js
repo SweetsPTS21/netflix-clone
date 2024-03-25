@@ -1,5 +1,5 @@
 import React from 'react'
-import witcher from '../../../asset/img/witcher.jpg'
+import witcher from '../../../assets/img/witcher.jpg'
 import { episodes } from '../../../resource/browse/episodes'
 
 const Episodes = () => {
@@ -7,7 +7,7 @@ const Episodes = () => {
         <div>
             <h1 className={'text-white text-2xl mt-8'}>Episodes</h1>
             <div className={'flex gap-4 mt-4'}>
-                <div className={'flex flex-col gap-4'}>
+                <div className={'episode-container'}>
                     {episodes.map((episode, index) => (
                         <div key={index} className={'flex gap-4'}>
                             <img

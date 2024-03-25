@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:3004": "set PORT=3004 && env-cmd -f .env.local react-scripts start",
+    "start:3008": "set PORT=3008 && env-cmd -f .env.local react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

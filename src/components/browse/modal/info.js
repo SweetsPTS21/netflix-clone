@@ -3,32 +3,22 @@ import { Col, Row } from 'antd'
 
 const MovieInfo = () => {
     return (
-        <Row gutter={16}>
+        <Row gutter={16} className={'mt-4'}>
             <Col span={16}>
-                <h1 className={'text-3xl font-semibold text-white'}>
+                <h1 className={'text-3xl font-semibold text-white mb-4'}>
                     The Witcher
                 </h1>
-                <div className={'flex gap-4'}>
+                <div className={'flex gap-4 text-white font-semibold'}>
                     <div className={'flex gap-2'}>
-                        <span className={'text-white font-semibold'}>
-                            98% Match
-                        </span>
-                        <span className={'text-white font-semibold'}>2020</span>
-                        <span className={'text-white font-semibold'}>18+</span>
-                        <span className={'text-white font-semibold'}>
-                            1 Season
-                        </span>
+                        <span>98% Match</span>
+                        <span>2020</span>
+                        <span>18+</span>
+                        <span>1 Season</span>
                     </div>
                     <div className={'flex gap-2'}>
-                        <span className={'text-white font-semibold'}>
-                            Sci-Fi
-                        </span>
-                        <span className={'text-white font-semibold'}>
-                            Fantasy
-                        </span>
-                        <span className={'text-white font-semibold'}>
-                            TV Show
-                        </span>
+                        <span>Sci-Fi</span>
+                        <span>Fantasy</span>
+                        <span>TV Show</span>
                     </div>
                 </div>
                 <p className={'text-white mt-4'}>
