@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, ConfigProvider, FloatButton, Layout } from 'antd'
-import rootBG from './asset/img/rootBG.jpg'
+import rootBG from './assets/img/rootBG.jpg'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import Header from './components/layout/header'
 import HomeSubscribe from './components/home/subscribe'
@@ -70,6 +70,7 @@ const RootPage = () => {
                             </div>
                         </div>
                         <Button
+                            type={'link'}
                             className={'scroll-down-button'}
                             onClick={() => {
                                 document

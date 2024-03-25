@@ -1,7 +1,7 @@
-import homeContent1 from '../../asset/img/home-content-1.png'
-import homeContent2 from '../../asset/img/home-content-2.jpg'
-import homeContent3 from '../../asset/img/home-content-3.jpg'
-import homeContent4 from '../../asset/img/home-content-4.png'
+import homeContent1 from '../../assets/img/home-content-1.png'
+import homeContent2 from '../../assets/img/home-content-2.jpg'
+import homeContent3 from '../../assets/img/home-content-3.jpg'
+import homeContent4 from '../../assets/img/home-content-4.png'
 import React from 'react'
 
 export const homeContent = [

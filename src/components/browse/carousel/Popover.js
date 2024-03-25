@@ -1,15 +1,12 @@
-import { Card, Tooltip } from 'antd'
-import witcher from '../../../asset/img/witcher.jpg'
-import {
-    DownCircleOutlined,
-    LikeOutlined,
-    PlayCircleFilled,
-    PlusOutlined
-} from '@ant-design/icons'
+import { Card } from 'antd'
+import witcher from '../../../assets/img/witcher.jpg'
 import React from 'react'
-const CarouselPopover = ({ movie }) => {
+import PropTypes from 'prop-types'
+import ButtonIcon from '../../../custom/button/ButtonIcon'
+
+const CarouselPopover = ({ movie, setOpenModal }) => {
     return (
-        <div className={'w-44 movie-details'}>
+        <div className={'w-[22rem] movie-details'}>
             <Card
                 bordered={false}
                 className={'w-full h-full rounded carousel-card'}
@@ -21,62 +18,43 @@ const CarouselPopover = ({ movie }) => {
                     />
                 }
                 actions={[
-                    <div className={'flex justify-between'}>
+                    <div key={movie?.id} className={'flex justify-between'}>
                         <div
                             className={
-                                'flex items-center gap-2 text-white px-2 text-lg font-semibold'
+                                'flex items-center gap-4 text-white px-4'
                             }
                         >
-                            <PlayCircleFilled />
-                            <Tooltip
-                                title={'Add to My List'}
-                                color={'rgba(109, 109, 110, 0.7)'}
-                                overlayInnerStyle={{
-                                    fontSize: '1.2rem'
-                                }}
-                            >
-                                <PlusOutlined />
-                            </Tooltip>
-                            <Tooltip
-                                title={'I Like It'}
-                                color={'rgba(109, 109, 110, 0.7)'}
-                                overlayInnerStyle={{
-                                    fontSize: '1.2rem'
-                                }}
-                            >
-                                <LikeOutlined />
-                            </Tooltip>
+                            <ButtonIcon icon={'play'} onClick={() => {}} />
+                            <ButtonIcon icon={'plus'} onClick={() => {}} />
+                            <ButtonIcon icon={'like'} onClick={() => {}} />
                         </div>
-                        <div
-                            className={'text-white px-2 text-lg font-semibold'}
-                        >
-                            <Tooltip
-                                title={'Episodes & Info'}
-                                color={'rgba(109, 109, 110, 0.7)'}
-                                overlayInnerStyle={{
-                                    fontSize: '1.2rem'
+                        <div className={'text-white px-4'}>
+                            <ButtonIcon
+                                icon={'down'}
+                                onClick={() => {
+                                    if (setOpenModal) {
+                                        setOpenModal(true)
+                                    }
                                 }}
-                            >
-                                <DownCircleOutlined />
-                            </Tooltip>
+                            />
                         </div>
                     </div>
                 ]}
             >
                 <Card.Meta
                     description={
-                        <div className={'flex flex-col p-2 text-white'}>
-                            <div className={'text-sm'}>{movie?.name}</div>
+                        <div className={'flex flex-col p-4 text-white'}>
+                            <div className={'text-xl'}>{movie?.name}</div>
                             <div
                                 style={{
                                     display: 'flex',
-                                    fontSize: '0.5rem'
+                                    fontSize: '1rem'
                                 }}
                             >
                                 <p>Comedy</p>
-                                <p className={'mx-1'}>•</p>
+                                <p className={'mx-2'}>•</p>
                                 <p>2021</p>
-                                <p className={'mx-1'}>•</p>
+                                <p className={'mx-2'}>•</p>
                                 <p>HD</p>
                             </div>
                         </div>
@@ -85,6 +63,19 @@ const CarouselPopover = ({ movie }) => {
             </Card>
         </div>
     )
+}
+
+CarouselPopover.propTypes = {
+    movie: PropTypes.object,
+    setOpenModal: PropTypes.func
+}
+
+CarouselPopover.defaultProps = {
+    movie: {
+        id: 0,
+        content: '',
+        name: ''
+    }
 }
 
 export default CarouselPopover

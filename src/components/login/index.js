@@ -1,7 +1,7 @@
 import React from 'react'
 import { ConfigProvider, Layout } from 'antd'
 import Header from '../layout/header'
-import rootBG from '../../asset/img/rootBG.jpg'
+import rootBG from '../../assets/img/rootBG.jpg'
 import HomeFooter from '../layout/footer'
 import LoginContent from './content'
 

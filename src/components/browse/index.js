@@ -20,6 +20,11 @@ const Browse = () => {
                     },
                     Card: {
                         actionsBg: '#141414'
+                    },
+                    Modal: {
+                        contentBg: '#181818',
+                        headerBg: '#181818',
+                        titleColor: 'white'
                     }
                 },
                 token: {

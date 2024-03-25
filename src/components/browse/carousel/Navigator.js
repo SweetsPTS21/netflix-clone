@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import PropTypes from 'prop-types'
 
 const Navigator = ({ direction, page, carouselRef }) => {
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -64,6 +65,12 @@ const Navigator = ({ direction, page, carouselRef }) => {
             )}
         </Button>
     )
+}
+
+Navigator.propTypes = {
+    direction: PropTypes.string,
+    page: PropTypes.number,
+    carouselRef: PropTypes.object
 }
 
 export default Navigator

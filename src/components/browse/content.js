@@ -1,21 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from 'antd'
 import Carousels from './carousel/Carousels'
 import { carousels } from '../../resource/browse/carousel'
+import MovieModal from './modal'
 
 const BrowseContent = () => {
+    const [openMovieDetails, setOpenMovieDetails] = useState(null)
+
     return (
         <Layout.Content className={'bg-[#141414] h-max'}>
             {carousels.map((carousel, index) => (
                 <div
-                    key={index}
+                    key={carousel.id}
                     style={{
                         marginTop: '3vh'
                     }}
                 >
-                    <Carousels title={carousel.title} data={carousel.data} />
+                    <Carousels
+                        title={carousel.title}
+                        data={carousel.data}
+                        setOpenModal={setOpenMovieDetails}
+                    />
                 </div>
             ))}
+            <MovieModal
+                openModal={openMovieDetails}
+                setOpenModal={setOpenMovieDetails}
+            />
         </Layout.Content>
     )
 }
