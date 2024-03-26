@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ConfigProvider, Layout } from 'antd'
 import BrowseHeader from './header'
 import BrowseHero from './hero'
 import BrowseContent from './content'
 import BrowseFooter from './footer'
+import { carousels } from '../../resource/browse/carousel'
 
 const Browse = () => {
+    const [openMovieDetails, setOpenMovieDetails] = useState(null)
+
     return (
         <ConfigProvider
             theme={{
@@ -34,8 +37,16 @@ const Browse = () => {
         >
             <Layout>
                 <BrowseHeader />
-                <BrowseHero />
-                <BrowseContent />
+                <BrowseHero
+                    dataCarousel={carousels}
+                    openMovieDetails={openMovieDetails}
+                    setOpenMovieDetails={setOpenMovieDetails}
+                />
+                <BrowseContent
+                    dataCarousels={carousels}
+                    openMovieDetails={openMovieDetails}
+                    setOpenMovieDetails={setOpenMovieDetails}
+                />
                 <BrowseFooter />
             </Layout>
         </ConfigProvider>

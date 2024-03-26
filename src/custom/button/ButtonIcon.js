@@ -13,8 +13,8 @@ import PropTypes from 'prop-types'
 
 const BaseButton = ({ onClick, text, icon, style, iconStyle }) => {
     const buttonStyle = {
-        width: '3rem',
-        height: '3rem',
+        width: '2.7rem',
+        height: '2.7rem',
         color: 'white',
         fontSize: '1.125rem',
         lineHeight: '1.75rem',

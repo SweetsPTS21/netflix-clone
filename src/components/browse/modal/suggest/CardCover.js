@@ -23,7 +23,14 @@ const CardCover = ({ episode }) => {
             <img src={witcher} alt={'movie'} className={'w-full rounded-lg'} />
             {showPlayButton && (
                 <div className={'absolute top-[26%] left-[40%]'}>
-                    <ButtonIcon icon={'play'} onClick={() => {}} />
+                    <ButtonIcon
+                        icon={'play'}
+                        onClick={() => {}}
+                        style={{
+                            width: '3rem',
+                            height: '3rem'
+                        }}
+                    />
                 </div>
             )}
         </div>

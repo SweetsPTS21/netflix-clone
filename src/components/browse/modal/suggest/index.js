@@ -27,7 +27,7 @@ const Suggest = () => {
                                             title={
                                                 <Typography
                                                     className={
-                                                        'text-[#d2d2d2] pt-4 px-4 truncate'
+                                                        'text-[#d2d2d2] text-lg pt-4 px-4 truncate'
                                                     }
                                                 >
                                                     {episode.title}

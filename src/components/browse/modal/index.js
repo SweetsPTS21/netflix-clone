@@ -59,10 +59,10 @@ const MovieModal = ({ openModal, setOpenModal }) => {
                                 >
                                     <CaretRightFilled
                                         style={{
-                                            fontSize: '1.5rem'
+                                            fontSize: '2rem'
                                         }}
                                     />
-                                    <p className={'text-lg font-semibold'}>
+                                    <p className={'text-xl font-semibold'}>
                                         Play
                                     </p>
                                 </div>
