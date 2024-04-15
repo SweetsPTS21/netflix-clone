@@ -1,11 +1,32 @@
 import { profiles } from '../profile/profile'
-import { Avatar, Divider } from 'antd'
+import { Avatar, Button, Divider } from 'antd'
 import {
     EditOutlined,
     QuestionCircleOutlined,
     UserOutlined
 } from '@ant-design/icons'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { logoutStart } from '../../redux/actions/login/actions'
+
+const SignOutItem = () => {
+    const dispatch = useDispatch()
+
+    return (
+        <div>
+            <Divider className={'p-0 m-2'} />
+            <Button
+                type={'text'}
+                onClick={() => {
+                    dispatch(logoutStart())
+                }}
+                className={'text-center'}
+            >
+                Sign Out
+            </Button>
+        </div>
+    )
+}
 
 const listProfiles = profiles.map((profile) => {
     return {
@@ -54,12 +75,7 @@ const newItems = [
     },
     {
         key: '9',
-        label: (
-            <div>
-                <Divider className={'p-0 m-2'} />
-                <p className={'text-center'}>Sign Out</p>
-            </div>
-        )
+        label: <SignOutItem />
     }
 ]
 

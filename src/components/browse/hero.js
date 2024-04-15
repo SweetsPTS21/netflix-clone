@@ -18,12 +18,6 @@ const BrowseHero = ({
                 height: 'calc(100vh - 64px)'
             }}
         >
-            <div
-                className={'browse-bg hero-image'}
-                style={{
-                    backgroundImage: `url(${heroBG})`
-                }}
-            ></div>
             <div className={'browse-hero'}>
                 <div className={'max-w-[500px]'}>
                     <img src={heroContent} alt={'hero'} />

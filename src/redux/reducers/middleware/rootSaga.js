@@ -4,5 +4,5 @@ import login from './login/login'
 import permissionData from './permission/middleware'
 
 export default function* rootSaga() {
-    yield all([...layoutData, ...login, ...document, ...permissionData])
+    yield all([...layoutData, ...login, ...permissionData])
 }

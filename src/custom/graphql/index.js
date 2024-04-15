@@ -1,9 +1,5 @@
 import { setContext } from '@apollo/client/link/context'
-import {
-    getLanguage,
-    getLocalAccessToken,
-    getLocalOauth2Token
-} from '../axios/normal'
+import { getLanguage, getLocalAccessToken, getLocalOauth2Token } from '../axios'
 import {
     ApolloClient,
     from,

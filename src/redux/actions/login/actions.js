@@ -1,8 +1,8 @@
-import {loginTypes} from "./types";
+import { loginTypes } from './types'
 
 export const getTokenStart = () => ({
-    type: loginTypes.GET_TOKEN_REQUEST,
-});
+    type: loginTypes.GET_TOKEN_REQUEST
+})
 
 export const updateUsernamePassword = (username, password) => ({
     type: loginTypes.UPDATE_USERNAME_PASSWORD,
@@ -12,37 +12,36 @@ export const updateUsernamePassword = (username, password) => ({
 
 export const getTokenSuccess = (oauth2Token) => ({
     type: loginTypes.GET_TOKEN_SUCCESS,
-    oauth2Token,
-});
+    oauth2Token
+})
 
 export const getTokenError = (error) => ({
     type: loginTypes.GET_TOKEN_ERROR,
-    error: error,
-});
+    error: error
+})
 
-export const loginStart = ({username, password, rememberMe}) => ({
+export const loginStart = ({ email, password, rememberMe }) => ({
     type: loginTypes.REQUEST,
-    username,
+    email,
     password,
     rememberMe,
     loggedInSuccess: false
-});
+})
 
 export const loginSuccess = () => ({
     type: loginTypes.SUCCESS,
     loggedInSuccess: true
-});
+})
 
 export const loginError = (error) => ({
     type: loginTypes.FAILURE,
     error: error,
-    loginSuccess: false,
-});
-
+    loginSuccess: false
+})
 
 export const logoutStart = () => ({
-    type: loginTypes.LOGOUT,
-});
+    type: loginTypes.LOGOUT
+})
 
 export const loadingLogin = () => ({
     type: loginTypes.LOADING_LOGIN

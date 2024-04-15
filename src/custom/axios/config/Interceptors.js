@@ -1,5 +1,5 @@
 import {
-    DG_axios as axiosInstance,
+    Netlfiz_axios as axiosInstance,
     getLanguage,
     getLocalAccessToken,
     getLocalOauth2Token,

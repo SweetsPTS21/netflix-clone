@@ -1,14 +1,25 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Input, Layout } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
+import { signIn } from '../../api/login/api'
+import { loginStart } from '../../redux/actions/login/actions'
+import { useDispatch } from 'react-redux'
 
 const LoginContent = () => {
+    const dispatch = useDispatch()
     const [form] = Form.useForm()
-    const navigate = useNavigate()
     const [rememberMe, setRememberMe] = useState(true)
 
     const onFinish = (values) => {
-        navigate('/profile')
+        console.log('Received values of form: ', values)
+        dispatch(
+            loginStart({
+                email: values.email,
+                password: values.password,
+                rememberMe
+            })
+        )
+        //(values.email, values.password, rememberMe)
     }
 
     return (

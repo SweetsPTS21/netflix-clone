@@ -12,9 +12,8 @@ import { BASE_DOMAIN, BASE_HOME } from '../../../../custom/axios/config/Url'
 
 function* onLoginStartAsync(action) {
     try {
-        const { username, password, rememberMe } = action
-
-        const responseOauth2 = yield call(getToken)
+        const { email, password, rememberMe } = action
+        const responseOauth2 = yield call(getToken, email)
 
         if (responseOauth2.status === 200) {
             yield put(getTokenSuccess(responseOauth2.data))
@@ -24,24 +23,18 @@ function* onLoginStartAsync(action) {
             )
         }
 
-        const response = yield call(signIn, username, password, rememberMe)
+        const response = yield call(signIn, email, password, rememberMe)
         if (response.status === 200) {
             Cookies.set('accessToken', response.data.accessToken, {
                 expires: 2592
             })
-
-            const newOauth2 = yield call(getToken)
-            if (responseOauth2.status === 200) {
-                yield put(getTokenSuccess(newOauth2.data))
-                localStorage.setItem(
-                    'oauth2Token',
-                    JSON.stringify(newOauth2.data)
-                )
-            }
+            Cookies.set('refreshToken', response.data.refreshToken, {
+                expires: 2592
+            })
             yield put(loginSuccess())
         }
     } catch (error) {
-        yield put(loginError(error?.response?.data))
+        yield put(loginError(error?.message))
         message.error('Sai tên người dùng hoặc mật khẩu. Vui lòng thử lại!')
     }
 }
@@ -54,7 +47,8 @@ function* onLogoutStartAsync() {
     try {
         yield call(logout)
     } finally {
-        Cookies.remove('accessToken', { domain: BASE_DOMAIN })
+        Cookies.remove('accessToken')
+        Cookies.remove('refreshToken')
         window.localStorage.clear()
         const pathname = encodeURIComponent(`${document.location.href}`)
         window.location.href = `${BASE_HOME}login?redirect=${pathname.replaceAll('403', '')}`

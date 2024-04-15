@@ -5,6 +5,7 @@ import BrowseHero from './hero'
 import BrowseContent from './content'
 import BrowseFooter from './footer'
 import { carousels } from '../../resource/browse/carousel'
+import heroBG from '../../assets/img/hero.jpg'
 
 const Browse = () => {
     const [openMovieDetails, setOpenMovieDetails] = useState(null)
@@ -35,6 +36,12 @@ const Browse = () => {
                 }
             }}
         >
+            <div
+                className={'browse-bg hero-image'}
+                style={{
+                    backgroundImage: `url(${heroBG})`
+                }}
+            ></div>
             <Layout>
                 <BrowseHeader />
                 <BrowseHero
