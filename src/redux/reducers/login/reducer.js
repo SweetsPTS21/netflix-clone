@@ -3,11 +3,11 @@ import { loginTypes } from './Types'
 const initialState = {
     loading: false,
     user: null,
-    token: null,
     email: '',
     password: '',
     rememberMe: false,
-    loginSuccess: false
+    loginSuccess: false,
+    error: null
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -46,7 +46,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                token: action.payload
+                error: null
             }
         case loginTypes.GET_TOKEN_ERROR:
             return {
@@ -64,6 +64,15 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: action.payload
+            }
+        case loginTypes.CLEAR_LOGIN_DATA:
+            return {
+                ...state,
+                email: null,
+                password: null,
+                rememberMe: false,
+                loginSuccess: false,
+                error: null
             }
         default:
             return state

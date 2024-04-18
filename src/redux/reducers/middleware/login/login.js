@@ -1,27 +1,28 @@
 import { call, fork, put, takeEvery } from '@redux-saga/core/effects'
 import { getToken, logout, signIn } from '../../../../api/login/api'
 import {
+    clearLogin,
     getTokenSuccess,
     loginError,
     loginSuccess
 } from '../../../actions/login/actions'
-import { loginTypes } from '../../../actions/login/types'
+import { loginTypes } from '../../../actions/login/Types'
 import { message } from 'antd'
 import Cookies from 'js-cookie'
-import { BASE_DOMAIN, BASE_HOME } from '../../../../custom/axios/config/Url'
+import { BASE_HOME } from '../../../../custom/axios/config/Url'
 
 function* onLoginStartAsync(action) {
     try {
         const { email, password, rememberMe } = action
-        const responseOauth2 = yield call(getToken, email)
-
-        if (responseOauth2.status === 200) {
-            yield put(getTokenSuccess(responseOauth2.data))
-            localStorage.setItem(
-                'oauth2Token',
-                JSON.stringify(responseOauth2.data)
-            )
-        }
+        // const responseOauth2 = yield call(getToken, email)
+        //
+        // if (responseOauth2.status === 200) {
+        //     yield put(getTokenSuccess(responseOauth2.data))
+        //     localStorage.setItem(
+        //         'jwtToken',
+        //         JSON.stringify(responseOauth2.data)
+        //     )
+        // }
 
         const response = yield call(signIn, email, password, rememberMe)
         if (response.status === 200) {
@@ -31,6 +32,8 @@ function* onLoginStartAsync(action) {
             Cookies.set('refreshToken', response.data.refreshToken, {
                 expires: 2592
             })
+
+            localStorage.setItem('jwtToken', JSON.stringify(response.data))
             yield put(loginSuccess())
         }
     } catch (error) {
@@ -45,13 +48,19 @@ function* onLogin() {
 
 function* onLogoutStartAsync() {
     try {
-        yield call(logout)
-    } finally {
-        Cookies.remove('accessToken')
-        Cookies.remove('refreshToken')
-        window.localStorage.clear()
-        const pathname = encodeURIComponent(`${document.location.href}`)
-        window.location.href = `${BASE_HOME}login?redirect=${pathname.replaceAll('403', '')}`
+        const response = yield call(logout)
+
+        if (response.status === 200) {
+            Cookies.remove('accessToken')
+            Cookies.remove('refreshToken')
+            localStorage.clear()
+
+            yield put(clearLogin())
+
+            window.location.href = `${BASE_HOME}/login`
+        }
+    } catch (error) {
+        message.error('Đã có lỗi xảy ra. Vui lòng thử lại!')
     }
 }
 

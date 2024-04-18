@@ -1,9 +1,11 @@
 import React, { useMemo, useState } from 'react'
-import { Modal } from 'antd'
+import { Modal, Spin } from 'antd'
 
 export const AppContext = React.createContext({})
+export const useAppContext = () => React.useContext(AppContext)
 
 const AppContextProvider = ({ children }) => {
+    const [isRequesting, setIsRequesting] = useState(false)
     const [isEditingForm, setIsEditingForm] = useState(false)
     const [openWarning, setOpenWarning] = useState(false)
     const [agree, setAgree] = useState(false)
@@ -14,6 +16,10 @@ const AppContextProvider = ({ children }) => {
 
     const handleRemoveIsEditingForm = () => {
         setIsEditingForm(false)
+    }
+
+    const changeRequesting = (value) => {
+        setIsRequesting(value)
     }
 
     const fieldsChanged = (changedFields = []) => {
@@ -52,9 +58,11 @@ const AppContextProvider = ({ children }) => {
             setOpenWarning,
             handleOpenWarning,
             agree,
-            setAgree
+            setAgree,
+            isRequesting,
+            changeRequesting
         }
-    }, [isEditingForm, openWarning, agree])
+    }, [isEditingForm, openWarning, agree, isRequesting])
 
     return (
         <AppContext.Provider value={getValuesContext}>
@@ -70,6 +78,7 @@ const AppContextProvider = ({ children }) => {
                 Bạn đang chỉnh sửa dữ liệu. Nếu thoát ra ngoài, dữ liệu sẽ bị
                 mất. Bạn vẫn muốn thoát?
             </Modal>
+            <Spin spinning={isRequesting} fullscreen />
         </AppContext.Provider>
     )
 }

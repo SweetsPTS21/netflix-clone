@@ -1,5 +1,5 @@
 import { setContext } from '@apollo/client/link/context'
-import { getLanguage, getLocalAccessToken, getLocalOauth2Token } from '../axios'
+import { getLanguage, getLocalJwtToken, updateLocalJwtToken } from '../axios'
 import {
     ApolloClient,
     from,
@@ -10,7 +10,6 @@ import {
 import { BASE_PATH } from '../axios/config/Url'
 import { onError } from '@apollo/client/link/error'
 import { message as messageAlert } from 'antd'
-import { updateLocalAccessToken } from '../axios'
 import { refreshToken } from '../../api/login/api'
 import { t } from 'i18next'
 
@@ -18,8 +17,7 @@ const authLink = setContext((_, { headers }) => {
     return {
         headers: {
             ...headers,
-            'dogoo-x-user-context-request': getLocalAccessToken(),
-            authorization: getLocalOauth2Token(),
+            authorization: getLocalJwtToken(),
             'Accept-Language': getLanguage()
         }
     }
@@ -29,9 +27,7 @@ const refreshTokenAuth = async () => {
     try {
         const response = await refreshToken()
         const { accessToken } = response.data
-        updateLocalAccessToken(accessToken)
-        // const re = await getToken();
-        // updateLocalOauth2Token(re.data);
+        updateLocalJwtToken(accessToken)
 
         return accessToken
     } catch (err) {
@@ -39,7 +35,12 @@ const refreshTokenAuth = async () => {
     }
 }
 
-const httpLink = new HttpLink({ uri: `${BASE_PATH}/graphql` })
+const httpLink = new HttpLink({
+    uri: `http://localhost:8080/graphql`,
+    fetchOptions: {
+        mode: 'no-cors'
+    }
+})
 
 function retryAccessToken(operation, forward) {
     return new Observable((observer) => {
@@ -49,8 +50,7 @@ function retryAccessToken(operation, forward) {
                     headers: {
                         // Re-add old headers
                         ...headers,
-                        'dogoo-x-user-context-request': getLocalAccessToken(),
-                        authorization: `${getLocalOauth2Token()}` || null,
+                        authorization: `${getLocalJwtToken()}` || null,
                         'Accept-Language': getLanguage()
                     }
                 }))
@@ -85,10 +85,7 @@ function errorLink() {
         }
         if (graphQLErrors) {
             for (let err of graphQLErrors) {
-                if (
-                    err?.extensions?.code === 'Internal Server Error' &&
-                    !err?.message.includes('com.dogoo')
-                ) {
+                if (err?.extensions?.code === 'Internal Server Error') {
                     messageAlert.error(t('notification.500'))
                 } else if (err?.extensions?.exception?.errno === 404) {
                     messageAlert.error(t('notification.404'))
@@ -120,5 +117,4 @@ function errorLink() {
 export const client = new ApolloClient({
     link: from([errorLink(), authLink, httpLink]),
     cache: new InMemoryCache()
-    // defaultOptions: defaultOptions,
 })

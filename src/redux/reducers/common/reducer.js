@@ -1,4 +1,4 @@
-import { requestType } from '../actions/common/Type'
+import { requestType } from '../../actions/common/Type'
 
 const initialState = {
     loading: false

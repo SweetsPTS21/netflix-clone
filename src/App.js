@@ -1,4 +1,4 @@
-import AppContextProvider from './context/app'
+import AppContextProvider from './context/appContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RootPage from './RootPage'
 import { BASE_HOME } from './custom/axios/config/Url'
@@ -9,24 +9,34 @@ import LoginPage from './components/login'
 import SignupPage from './components/signup'
 import Profile from './components/profile'
 import Browse from './components/browse'
+import AuthedContextProvider from './context/authedContext'
+import Page403 from './common/error/Page403'
 
 function App() {
     return (
-        <AppContextProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/*" element={<RootPage />}>
-                        <Route path="setting/*" element={<SettingRouter />} />
-                        <Route path="forbidden" element={<Error403 />} />
-                    </Route>
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="profile" element={<Profile />} />
-                    <Route path="signup" element={<SignupPage />} />
-                    <Route path="browse/*" element={<Browse />} />
-                    <Route path="403" element={<Error403 href={BASE_HOME} />} />
-                </Routes>
-            </BrowserRouter>
-        </AppContextProvider>
+        <AuthedContextProvider>
+            <AppContextProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/*" element={<RootPage />}>
+                            <Route
+                                path="setting/*"
+                                element={<SettingRouter />}
+                            />
+                            <Route path="forbidden" element={<Error403 />} />
+                        </Route>
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="profile" element={<Profile />} />
+                        <Route path="signup" element={<SignupPage />} />
+                        <Route path="browse/*" element={<Browse />} />
+                        <Route
+                            path="403"
+                            element={<Page403 href={BASE_HOME} />}
+                        />
+                    </Routes>
+                </BrowserRouter>
+            </AppContextProvider>
+        </AuthedContextProvider>
     )
 }
 

@@ -4,19 +4,19 @@ import Header from '../layout/header'
 import rootBG from '../../assets/img/rootBG.jpg'
 import HomeFooter from '../layout/footer'
 import LoginContent from './content'
-import { useSelector } from 'react-redux'
+import { useAuthedContext } from '../../context/authedContext'
 
 const LoginPage = () => {
-    const { loginSuccess } = useSelector((state) => state.loginReducer)
+    const { authedLogin } = useAuthedContext()
 
     useEffect(() => {
-        if (loginSuccess) {
-            window.location.href = '/browse'
+        if (authedLogin) {
+            window.location.href = '/profile'
         }
-    }, [loginSuccess])
+    }, [authedLogin])
 
     return (
-        !loginSuccess && (
+        !authedLogin && (
             <ConfigProvider
                 theme={{
                     components: {

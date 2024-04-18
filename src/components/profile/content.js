@@ -4,6 +4,7 @@ import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useAppContext } from '../../context/appContext'
 
 const ProfileContent = ({
     editProfile,
@@ -11,6 +12,8 @@ const ProfileContent = ({
     setCurrProfile,
     setEditProfile
 }) => {
+    const { changeRequesting } = useAppContext()
+
     return (
         <div
             className={
@@ -24,7 +27,10 @@ const ProfileContent = ({
                         key={profile.id}
                         className={'flex flex-col items-center'}
                     >
-                        <Link to={'/browse'}>
+                        <Link
+                            to={'/browse'}
+                            onClick={() => changeRequesting(true)}
+                        >
                             <div className={'relative'}>
                                 <img
                                     className={'w-full h-full'}

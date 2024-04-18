@@ -7,8 +7,7 @@ import HomeSubscribe from './components/home/subscribe'
 import HomeContent from './components/home/content'
 import HomeQuestion from './components/home/question'
 import HomeFooter from './components/layout/footer'
-import { useSelector } from 'react-redux'
-import loginReducer from './redux/reducers/login/reducer'
+import { useAuthedContext } from './context/authedContext'
 
 const themeConfig = {
     components: {
@@ -38,16 +37,16 @@ const themeConfig = {
 }
 
 const RootPage = () => {
-    const { loginSuccess } = useSelector((state) => state.loginReducer)
+    const { authedLogin } = useAuthedContext()
 
     useEffect(() => {
-        if (loginSuccess) {
-            window.location.href = '/browse'
+        if (authedLogin) {
+            window.location.href = '/profile'
         }
-    }, [loginSuccess])
+    }, [authedLogin])
 
     return (
-        !loginSuccess && (
+        !authedLogin && (
             <ConfigProvider theme={themeConfig}>
                 <div className={'root-layout'}>
                     <div className={'root-bg'}></div>

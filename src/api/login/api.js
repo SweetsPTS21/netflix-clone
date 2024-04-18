@@ -1,10 +1,10 @@
 import { BASE_PATH } from '../../custom/axios/config/Url'
 import { Netlfiz_axios } from '../../custom/axios'
 
-const BASE_URL_LOGIN = `${BASE_PATH}/auth/authenticate`
-const BASE_URL_TOKEN = `${BASE_PATH}/auth/token`
-const BASE_URL_REFRESH_TOKEN = `${BASE_PATH}/login-rest/v2.0/refreshtoken`
-const BASE_URL_LOG_OUT = `${BASE_PATH}/login-rest/v2.0/logout`
+const BASE_URL_LOGIN = `${BASE_PATH}/api/v1/auth/authenticate`
+const BASE_URL_TOKEN = `${BASE_PATH}/api/v1/auth/token`
+const BASE_URL_REFRESH_TOKEN = `${BASE_PATH}/api/v1/auth/refresh-token`
+const BASE_URL_LOG_OUT = `${BASE_PATH}/api/v1/auth/logout`
 
 function setLanguage() {
     localStorage.setItem('language', 'vi')
