@@ -1,8 +1,9 @@
-import { BASE_PATH } from '../../custom/axios/config/Url'
-import { Netlfiz_axios } from '../../custom/axios'
+import { BASE_PATH } from '../../../custom/axios/config/Url'
+import { getLocalJwtToken, Netlfiz_axios } from '../../../custom/axios'
 
 const BASE_URL_LOGIN = `${BASE_PATH}/api/v1/auth/authenticate`
 const BASE_URL_TOKEN = `${BASE_PATH}/api/v1/auth/token`
+const BASE_URL_ME = `${BASE_PATH}/api/v1/auth/me`
 const BASE_URL_REFRESH_TOKEN = `${BASE_PATH}/api/v1/auth/refresh-token`
 const BASE_URL_LOG_OUT = `${BASE_PATH}/api/v1/auth/logout`
 
@@ -41,6 +42,12 @@ export const getToken = (email) => {
             }
         }
     )
+}
+
+export const getMe = () => {
+    return Netlfiz_axios.get(BASE_URL_ME, {
+        withCredentials: true
+    })
 }
 
 export const refreshToken = (refreshtoken) => {

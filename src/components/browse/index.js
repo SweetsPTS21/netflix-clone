@@ -52,11 +52,7 @@ const Browse = () => {
                         openMovieDetails={openMovieDetails}
                         setOpenMovieDetails={setOpenMovieDetails}
                     />
-                    <BrowseContent
-                        dataCarousels={carousels}
-                        openMovieDetails={openMovieDetails}
-                        setOpenMovieDetails={setOpenMovieDetails}
-                    />
+                    <BrowseContent dataCarousels={carousels} />
                     <BrowseFooter />
                 </Layout>
             </ConfigProvider>

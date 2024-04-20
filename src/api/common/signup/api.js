@@ -1,5 +1,5 @@
-import { Netlfiz_axios } from '../../custom/axios'
-import { BASE_PATH } from '../../custom/axios/config/Url'
+import { Netlfiz_axios } from '../../../custom/axios'
+import { BASE_PATH } from '../../../custom/axios/config/Url'
 
 const BASE_URL_SIGNUP = `${BASE_PATH}/api/v1/auth/register`
 

@@ -27,3 +27,34 @@ export const GET_MOVIES = gql`
         }
     }
 `
+
+export const GET_MOVIE_BY_CATEGORY = gql`
+    query GetMovieByCategory {
+        getMovieByCategory {
+            category
+            movies {
+                id
+                title
+                year
+                rated
+                released
+                runtime
+                genre
+                director
+                writer
+                actors
+                plot
+                languages
+                country
+                awards
+                poster
+                metascore
+                imdbRating
+                imdbVotes
+                type
+                response
+                images
+            }
+        }
+    }
+`

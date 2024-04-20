@@ -1,18 +1,20 @@
 import React from 'react'
-import { profiles } from '../../resource/profile/profile'
 import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../../context/appContext'
+import { useProfileContext } from '../../context/profileContext'
+import defaultProfile from '../../assets/img/200.png'
 
-const ProfileContent = ({
-    editProfile,
-    setIsEditing,
-    setCurrProfile,
-    setEditProfile
-}) => {
+const ProfileContent = () => {
     const { changeRequesting } = useAppContext()
+    const {
+        profiles,
+        editProfile,
+        setIsEditing,
+        setCurrProfile,
+        setEditProfile
+    } = useProfileContext()
 
     return (
         <div
@@ -22,7 +24,7 @@ const ProfileContent = ({
         >
             <h1 className={'text-6xl text-white'}>Ai đang xem?</h1>
             <div className={'list-profile'}>
-                {profiles.map((profile) => (
+                {profiles?.map((profile) => (
                     <div
                         key={profile.id}
                         className={'flex flex-col items-center'}
@@ -34,7 +36,7 @@ const ProfileContent = ({
                             <div className={'relative'}>
                                 <img
                                     className={'w-full h-full'}
-                                    src={profile.image}
+                                    src={profile.image || defaultProfile}
                                     alt={profile.name}
                                 />
                                 {editProfile && (
@@ -75,17 +77,6 @@ const ProfileContent = ({
             </div>
         </div>
     )
-}
-
-ProfileContent.propTypes = {
-    editProfile: PropTypes.bool,
-    setIsEditing: PropTypes.func,
-    setCurrProfile: PropTypes.func,
-    setEditProfile: PropTypes.func
-}
-
-ProfileContent.defaultProps = {
-    editProfile: false
 }
 
 export default ProfileContent

@@ -9,7 +9,7 @@ import { useAuthedContext } from './authedContext'
 import Page403 from '../common/error/Page403'
 import { useAppContext } from './appContext'
 import { useQuery } from '@apollo/client'
-import { GET_MOVIES } from '../api/graphql/movie'
+import { GET_MOVIE_BY_CATEGORY, GET_MOVIES } from '../api/graphql/movie'
 
 const BrowseContext = createContext({})
 
@@ -17,40 +17,59 @@ export const useBrowseContext = () => useContext(BrowseContext)
 
 const BrowseContextProvider = ({ children }) => {
     const { authedLogin } = useAuthedContext()
+    const { isRequesting } = useAppContext()
     const { changeRequesting } = useAppContext()
+    const {
+        data: movieData,
+        loading: movieLoading,
+        error: movieError
+    } = useQuery(GET_MOVIE_BY_CATEGORY)
+    const [currentMovie, setCurrentMovie] = useState(null)
+    const [openModal, setOpenModal] = useState(false)
+
+    console.log('currentMovie', currentMovie)
 
     useEffect(() => {
         if (authedLogin) {
             const delayFn = setTimeout(() => {
                 changeRequesting(false)
-            }, 1000)
+            }, 500)
 
             return () => {
                 clearTimeout(delayFn)
             }
         }
-    }, [])
+    }, [authedLogin])
 
-    const {
-        data: movieData,
-        loading: movieLoading,
-        error: movieError
-    } = useQuery(GET_MOVIES)
+    useEffect(() => {
+        if (movieLoading) {
+            changeRequesting(true)
+        }
+    }, [movieLoading])
 
     const contextValue = useMemo(() => {
         return {
-            movieData,
+            moviesData: movieData?.getMovieByCategory,
             movieLoading,
-            movieError
+            movieError,
+            currentMovie,
+            setCurrentMovie,
+            openModal,
+            setOpenModal
         }
-    }, [movieData, movieLoading, movieError])
+    }, [movieData, movieLoading, movieError, currentMovie, openModal])
 
-    return authedLogin ? (
-        <BrowseContext.Provider value={contextValue}>
-            {children}
-        </BrowseContext.Provider>
-    ) : (
-        <Page403 />
+    return (
+        !isRequesting &&
+        !movieLoading &&
+        !movieError &&
+        (authedLogin ? (
+            <BrowseContext.Provider value={contextValue}>
+                {children}
+            </BrowseContext.Provider>
+        ) : (
+            <Page403 />
+        ))
     )
 }
 

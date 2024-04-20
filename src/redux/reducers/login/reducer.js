@@ -16,7 +16,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 email: action.email,
-                password: action.password,
+                password: btoa(action.password),
                 rememberMe: action.rememberMe,
                 loginSuccess: action.loggedInSuccess
             }
@@ -24,6 +24,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                user: action.user,
                 loginSuccess: action.loggedInSuccess
             }
         case loginTypes.FAILURE:

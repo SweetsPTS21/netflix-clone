@@ -2,17 +2,18 @@ import axios from 'axios'
 import { BASE_DOMAIN, BASE_PATH } from './config/Url'
 import Cookies from 'js-cookie'
 
-export const Netlfiz_axios = axios.create({
-    baseURL: `${BASE_PATH}/api/v1`,
-    headers: {
-        'Content-Type': 'application/json'
-    }
-})
-
 export const getLocalJwtToken = () => {
     const jwtToken = Cookies.get('accessToken')
     return `Bearer ${jwtToken}`
 }
+
+export const Netlfiz_axios = axios.create({
+    baseURL: `${BASE_PATH}/api/v1`,
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: getLocalJwtToken()
+    }
+})
 
 export const updateLocalJwtToken = (accessToken) => {
     Cookies.set('accessToken', accessToken, {

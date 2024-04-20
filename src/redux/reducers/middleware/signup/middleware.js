@@ -1,5 +1,5 @@
 import { call, fork, put, takeEvery } from '@redux-saga/core/effects'
-import { signUp } from '../../../../api/signup/api'
+import { signUp } from '../../../../api/common/signup/api'
 import { signupSuccess, signupError } from '../../../actions/signup/actions'
 import { signupTypes } from '../../../actions/signup/Types'
 import { message } from 'antd'

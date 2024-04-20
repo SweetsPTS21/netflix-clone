@@ -3,32 +3,30 @@ import { Layout } from 'antd'
 import Carousels from './carousel/Carousels'
 import MovieModal from './modal'
 import PropTypes from 'prop-types'
+import { useBrowseContext } from '../../context/browseContext'
 
-const BrowseContent = ({
-    dataCarousels,
-    openMovieDetails,
-    setOpenMovieDetails
-}) => {
+const BrowseContent = () => {
+    const { moviesData } = useBrowseContext()
+
     return (
         <Layout.Content className={'bg-[#141414] h-max'}>
-            {dataCarousels.map((carousel, index) => (
-                <div
-                    key={carousel.id}
-                    style={{
-                        marginTop: '3vh'
-                    }}
-                >
-                    <Carousels
-                        title={carousel.title}
-                        data={carousel.data}
-                        setOpenModal={setOpenMovieDetails}
-                    />
-                </div>
-            ))}
-            <MovieModal
-                openModal={openMovieDetails}
-                setOpenModal={setOpenMovieDetails}
-            />
+            {moviesData?.map(
+                (carousel, index) =>
+                    carousel?.movies?.length > 5 && (
+                        <div
+                            key={carousel?.category}
+                            style={{
+                                marginTop: '3vh'
+                            }}
+                        >
+                            <Carousels
+                                title={carousel?.category}
+                                data={carousel?.movies}
+                            />
+                        </div>
+                    )
+            )}
+            <MovieModal />
         </Layout.Content>
     )
 }

@@ -1,8 +1,7 @@
 import { call, fork, put, takeEvery } from '@redux-saga/core/effects'
-import { getToken, logout, signIn } from '../../../../api/login/api'
+import { getMe, logout, signIn } from '../../../../api/common/login/api'
 import {
     clearLogin,
-    getTokenSuccess,
     loginError,
     loginSuccess
 } from '../../../actions/login/actions'
@@ -10,21 +9,13 @@ import { loginTypes } from '../../../actions/login/Types'
 import { message } from 'antd'
 import Cookies from 'js-cookie'
 import { BASE_HOME } from '../../../../custom/axios/config/Url'
+import { clearLocalData } from '../../../../utils/localDataUtils'
 
 function* onLoginStartAsync(action) {
     try {
         const { email, password, rememberMe } = action
-        // const responseOauth2 = yield call(getToken, email)
-        //
-        // if (responseOauth2.status === 200) {
-        //     yield put(getTokenSuccess(responseOauth2.data))
-        //     localStorage.setItem(
-        //         'jwtToken',
-        //         JSON.stringify(responseOauth2.data)
-        //     )
-        // }
-
         const response = yield call(signIn, email, password, rememberMe)
+
         if (response.status === 200) {
             Cookies.set('accessToken', response.data.accessToken, {
                 expires: 2592
@@ -34,7 +25,11 @@ function* onLoginStartAsync(action) {
             })
 
             localStorage.setItem('jwtToken', JSON.stringify(response.data))
-            yield put(loginSuccess())
+
+            const me = yield call(getMe)
+            if (me.status === 200) {
+                yield put(loginSuccess(me.data))
+            }
         }
     } catch (error) {
         yield put(loginError(error?.message))
@@ -51,9 +46,7 @@ function* onLogoutStartAsync() {
         const response = yield call(logout)
 
         if (response.status === 200) {
-            Cookies.remove('accessToken')
-            Cookies.remove('refreshToken')
-            localStorage.clear()
+            clearLocalData()
 
             yield put(clearLogin())
 

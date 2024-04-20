@@ -6,7 +6,7 @@ import {
     updateLocalAccessToken
 } from '../index'
 import { message } from 'antd'
-import { refreshToken } from '../../../api/login/api'
+import { refreshToken } from '../../../api/common/login/api'
 import { Translation } from 'react-i18next'
 import { onReloadData } from '../../../redux/actions/layout/interaction/action'
 import { logoutStart } from '../../../redux/actions/login/actions'

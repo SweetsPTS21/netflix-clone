@@ -1,7 +1,7 @@
 import { call, put, takeEvery, fork } from '@redux-saga/core/effects'
 import { getTokenError, getTokenSuccess } from '../../../actions/login/actions'
 import { loginTypes } from '../../../actions/login/Types'
-import { getToken } from '../../../../api/login/api'
+import { getToken } from '../../../../api/common/login/api'
 import { message } from 'antd'
 import Cookies from 'js-cookie'
 

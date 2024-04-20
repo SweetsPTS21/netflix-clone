@@ -7,7 +7,7 @@ import { redirect } from 'react-router-dom'
 import CarouselRow from './Row'
 import Navigator from './Navigator'
 
-const Carousels = ({ title, data, setOpenModal }) => {
+const Carousels = ({ title, data }) => {
     const page = Math.ceil(data.length / 6)
     const carouselRef = createRef()
     const [showExplore, setShowExplore] = useState(null)
@@ -76,7 +76,6 @@ const Carousels = ({ title, data, setOpenModal }) => {
                     <CarouselRow
                         key={index}
                         items={data.slice(index * 6, (index + 1) * 6)}
-                        setOpenModal={setOpenModal}
                     />
                 ))}
             </Carousel>
@@ -91,8 +90,7 @@ const Carousels = ({ title, data, setOpenModal }) => {
 
 Carousels.propTypes = {
     title: PropTypes.string,
-    data: PropTypes.array,
-    setOpenModal: PropTypes.func
+    data: PropTypes.array
 }
 
 Carousels.defaultProps = {

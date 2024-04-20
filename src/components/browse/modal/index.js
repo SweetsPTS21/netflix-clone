@@ -3,14 +3,15 @@ import { Button, Divider, Modal } from 'antd'
 import witcher from '../../../assets/img/witcher.jpg'
 import MovieInfo from './info'
 import Episodes from './episodes'
-import PropTypes from 'prop-types'
 import About from './about'
 import { CaretRightFilled } from '@ant-design/icons'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
 import Suggest from './suggest'
+import { useBrowseContext } from '../../../context/browseContext'
 
-const MovieModal = ({ openModal, setOpenModal }) => {
+const MovieModal = () => {
     const [mute, setMute] = useState(false)
+    const { currentMovie, openModal, setOpenModal } = useBrowseContext()
 
     return (
         <Modal
@@ -42,7 +43,11 @@ const MovieModal = ({ openModal, setOpenModal }) => {
             <div className={'flex flex-col'}>
                 <div className={'flex gap-4 relative'}>
                     <img
-                        src={witcher}
+                        src={
+                            currentMovie?.images?.length > 0
+                                ? currentMovie?.images[0]
+                                : witcher
+                        }
                         alt={'movie'}
                         className={'w-full h-[32rem] rounded-lg'}
                     />
@@ -91,24 +96,19 @@ const MovieModal = ({ openModal, setOpenModal }) => {
                     </div>
                 </div>
                 <div className={'px-12'}>
-                    <MovieInfo />
-                    <Episodes />
+                    <MovieInfo movie={currentMovie} />
+
+                    {currentMovie?.type === 'series' && (
+                        <Episodes movie={currentMovie} />
+                    )}
+
                     <Suggest />
                     <Divider className={'bg-[#d2d2d2]'} />
-                    <About />
+                    <About movie={currentMovie} />
                 </div>
             </div>
         </Modal>
     )
-}
-
-MovieModal.propTypes = {
-    openModal: PropTypes.object,
-    setOpenModal: PropTypes.func
-}
-
-MovieModal.defaultProps = {
-    openModal: false
 }
 
 export default MovieModal

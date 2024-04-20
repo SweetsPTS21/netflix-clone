@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ConfigProvider, Layout } from 'antd'
 import Header from '../layout/header'
 import EditProfile from './edit'
 import ProfileContent from './content'
-import { useAuthedContext } from '../../context/authedContext'
-import Page403 from '../../common/error/Page403'
-import { useAppContext } from '../../context/appContext'
+import ProfileContextProvider from '../../context/profileContext'
 
 const Profile = () => {
-    const [editProfile, setEditProfile] = useState(false)
-    const [currProfile, setCurrProfile] = useState(null)
-    const [isEditing, setIsEditing] = useState(false)
-    const { authedLogin } = useAuthedContext()
-    const { isRequesting } = useAppContext()
-
     return (
-        authedLogin &&
-        !isRequesting && (
+        <ProfileContextProvider>
             <ConfigProvider
                 theme={{
                     components: {
@@ -48,22 +39,12 @@ const Profile = () => {
                 <Layout className={'h-screen bg-black'}>
                     <Header type={'login'} width={'100%'} />
                     <Layout.Content>
-                        <ProfileContent
-                            editProfile={editProfile}
-                            setIsEditing={setIsEditing}
-                            setCurrProfile={setCurrProfile}
-                            setEditProfile={setEditProfile}
-                        />
-                        <EditProfile
-                            isEditing={isEditing}
-                            profile={currProfile}
-                            setIsEditing={setIsEditing}
-                            setEditProfile={setEditProfile}
-                        />
+                        <ProfileContent />
+                        <EditProfile />
                     </Layout.Content>
                 </Layout>
             </ConfigProvider>
-        )
+        </ProfileContextProvider>
     )
 }
 

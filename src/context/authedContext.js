@@ -19,7 +19,9 @@ const AuthedContextProvider = ({ children }) => {
     const dispatch = useDispatch()
     const [authedUser, setAuthedUser] = useState(null)
     const [authedLogin, setAuthedLogin] = useState(false)
-    const { email, loginSuccess } = useSelector((state) => state.loginReducer)
+    const { email, loginSuccess, user } = useSelector(
+        (state) => state.loginReducer
+    )
 
     useEffect(() => {
         if (loginSuccess && email) {
@@ -30,7 +32,7 @@ const AuthedContextProvider = ({ children }) => {
                 dispatch(getTokenStart(email))
             } else if (cookieToken) {
                 setAuthedLogin(true)
-                setAuthedUser(email)
+                setAuthedUser(user)
             } else {
                 dispatch(clearLogin())
             }

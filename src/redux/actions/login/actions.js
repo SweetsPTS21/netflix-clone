@@ -28,8 +28,9 @@ export const loginStart = ({ email, password, rememberMe }) => ({
     loggedInSuccess: false
 })
 
-export const loginSuccess = () => ({
+export const loginSuccess = (user) => ({
     type: loginTypes.SUCCESS,
+    user: user,
     loggedInSuccess: true
 })
 

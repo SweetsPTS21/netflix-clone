@@ -3,8 +3,11 @@ import witcher from '../../../assets/img/witcher.jpg'
 import React from 'react'
 import PropTypes from 'prop-types'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
+import { useBrowseContext } from '../../../context/browseContext'
 
-const CarouselPopover = ({ movie, setOpenModal }) => {
+const CarouselPopover = ({ movie }) => {
+    const { setCurrentMovie, setOpenModal } = useBrowseContext()
+
     return (
         <div className={'w-[22rem] movie-details'}>
             <Card
@@ -12,9 +15,13 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
                 className={'w-full h-full rounded-lg carousel-card'}
                 cover={
                     <img
-                        src={witcher}
+                        src={
+                            movie?.images?.length > 0
+                                ? movie?.images[1]
+                                : witcher
+                        }
                         className={'w-full h-full'}
-                        alt={movie?.content}
+                        alt={movie?.title}
                     />
                 }
                 actions={[
@@ -44,9 +51,8 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
                                 icon={'down'}
                                 tooltip={'More Info'}
                                 onClick={() => {
-                                    if (setOpenModal) {
-                                        setOpenModal(true)
-                                    }
+                                    setCurrentMovie(movie)
+                                    setOpenModal(true)
                                 }}
                             />
                         </div>
@@ -56,7 +62,7 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
                 <Card.Meta
                     description={
                         <div className={'flex flex-col p-4 text-white'}>
-                            <div className={'text-xl'}>{movie?.name}</div>
+                            <div className={'text-xl'}>{movie?.title}</div>
                             <div
                                 style={{
                                     display: 'flex',

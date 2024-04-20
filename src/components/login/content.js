@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Input, Layout } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
-import { signIn } from '../../api/login/api'
+import { signIn } from '../../api/common/login/api'
 import { loginStart } from '../../redux/actions/login/actions'
 import { useDispatch } from 'react-redux'
 
