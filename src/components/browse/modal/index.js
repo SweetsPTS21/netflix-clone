@@ -8,15 +8,16 @@ import { CaretRightFilled } from '@ant-design/icons'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
 import Suggest from './suggest'
 import { useBrowseContext } from '../../../context/browseContext'
+import YoutubeTrailer from '../../youtube/YoutubeTrailer'
 
 const MovieModal = () => {
     const [mute, setMute] = useState(false)
-    const { currentMovie, openModal, setOpenModal } = useBrowseContext()
+    const { currentMovie, openModal, setOpenModal, setTrailerPlaying } =
+        useBrowseContext()
 
     return (
         <Modal
             open={openModal}
-            onCancel={() => setOpenModal(null)}
             centered={true}
             width={850}
             style={{
@@ -28,7 +29,10 @@ const MovieModal = () => {
                 <div className={'absolute top-6 right-6'}>
                     <ButtonIcon
                         icon={'close'}
-                        onClick={() => setOpenModal(null)}
+                        onClick={() => {
+                            setTrailerPlaying(false)
+                            setOpenModal(null)
+                        }}
                         style={{
                             width: '2rem',
                             height: '2rem'
@@ -42,15 +46,18 @@ const MovieModal = () => {
         >
             <div className={'flex flex-col'}>
                 <div className={'flex gap-4 relative'}>
-                    <img
-                        src={
-                            currentMovie?.images?.length > 0
-                                ? currentMovie?.images[0]
-                                : witcher
-                        }
-                        alt={'movie'}
-                        className={'w-full h-[32rem] rounded-lg'}
-                    />
+                    <div className={'w-full h-[32rem] rounded-lg bg-[#333]'}>
+                        <YoutubeTrailer
+                            videoId={currentMovie?.trailer}
+                            opts={{
+                                height: '512',
+                                width: '850',
+                                playerVars: {
+                                    autoplay: 1
+                                }
+                            }}
+                        />
+                    </div>
                     <div className={'movie-actions'}>
                         <div className={'flex gap-4'}>
                             <Button

@@ -26,6 +26,7 @@ const BrowseContextProvider = ({ children }) => {
     } = useQuery(GET_MOVIE_BY_CATEGORY)
     const [currentMovie, setCurrentMovie] = useState(null)
     const [openModal, setOpenModal] = useState(false)
+    const [trailerPlaying, setTrailerPlaying] = useState(false)
 
     console.log('currentMovie', currentMovie)
 
@@ -55,9 +56,18 @@ const BrowseContextProvider = ({ children }) => {
             currentMovie,
             setCurrentMovie,
             openModal,
-            setOpenModal
+            setOpenModal,
+            trailerPlaying,
+            setTrailerPlaying
         }
-    }, [movieData, movieLoading, movieError, currentMovie, openModal])
+    }, [
+        movieData,
+        movieLoading,
+        movieError,
+        currentMovie,
+        openModal,
+        trailerPlaying
+    ])
 
     return (
         !isRequesting &&

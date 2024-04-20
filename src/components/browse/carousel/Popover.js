@@ -6,7 +6,8 @@ import ButtonIcon from '../../../custom/button/ButtonIcon'
 import { useBrowseContext } from '../../../context/browseContext'
 
 const CarouselPopover = ({ movie }) => {
-    const { setCurrentMovie, setOpenModal } = useBrowseContext()
+    const { setCurrentMovie, setOpenModal, setTrailerPlaying } =
+        useBrowseContext()
 
     return (
         <div className={'w-[22rem] movie-details'}>
@@ -53,6 +54,7 @@ const CarouselPopover = ({ movie }) => {
                                 onClick={() => {
                                     setCurrentMovie(movie)
                                     setOpenModal(true)
+                                    setTrailerPlaying(true)
                                 }}
                             />
                         </div>
