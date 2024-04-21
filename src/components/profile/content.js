@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../../context/appContext'
@@ -13,7 +13,8 @@ const ProfileContent = () => {
         editProfile,
         setIsEditing,
         setCurrProfile,
-        setEditProfile
+        setEditProfile,
+        setFormMode
     } = useProfileContext()
 
     return (
@@ -30,8 +31,12 @@ const ProfileContent = () => {
                         className={'flex flex-col items-center'}
                     >
                         <Link
-                            to={'/browse'}
-                            onClick={() => changeRequesting(true)}
+                            to={!editProfile ? '/browse' : '#'}
+                            onClick={() => {
+                                if (!editProfile) {
+                                    changeRequesting(true)
+                                }
+                            }}
                         >
                             <div className={'relative'}>
                                 <img
@@ -52,6 +57,7 @@ const ProfileContent = () => {
                                             onClick={() => {
                                                 setIsEditing(true)
                                                 setCurrProfile(profile)
+                                                setFormMode('update')
                                             }}
                                         >
                                             <EditOutlined />
@@ -65,6 +71,25 @@ const ProfileContent = () => {
                         </p>
                     </div>
                 ))}
+                {profiles?.length < 5 && (
+                    <div className={'flex flex-col items-center'}>
+                        <div
+                            className={
+                                'w-40 h-40 bg-gray-800 flex justify-center items-center'
+                            }
+                        >
+                            <PlusOutlined
+                                className={'text-5xl text-white'}
+                                onClick={() => {
+                                    setIsEditing(true)
+                                    setCurrProfile(null)
+                                    setFormMode('add')
+                                }}
+                            />
+                        </div>
+                        <p className={'text-white mt-4 text-xl'}>Thêm hồ sơ</p>
+                    </div>
+                )}
             </div>
             <div>
                 <Button

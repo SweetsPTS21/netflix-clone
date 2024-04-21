@@ -6,6 +6,7 @@ export const GET_MOVIES = gql`
             id
             title
             year
+            trailer
             rated
             released
             runtime
@@ -36,6 +37,7 @@ export const GET_MOVIE_BY_CATEGORY = gql`
                 id
                 title
                 year
+                trailer
                 rated
                 released
                 runtime
