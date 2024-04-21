@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_DOMAIN, BASE_PATH } from './config/Url'
+import { BASE_DOMAIN, BASE_PATH } from '../../config/Url'
 import Cookies from 'js-cookie'
 
 export const getLocalJwtToken = () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, ConfigProvider, Tooltip } from 'antd'
 import {
+    ArrowLeftOutlined,
     CaretRightFilled,
     CloseOutlined,
     DownOutlined,
@@ -44,6 +45,8 @@ const BaseButton = ({ onClick, text, icon, style, iconStyle }) => {
                 return <MutedOutlined style={iconStyle} />
             case 'close':
                 return <CloseOutlined style={iconStyle} />
+            case 'return':
+                return <ArrowLeftOutlined style={iconStyle} />
             default:
                 return null
         }

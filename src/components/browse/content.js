@@ -4,13 +4,14 @@ import Carousels from './carousel/Carousels'
 import MovieModal from './modal'
 import PropTypes from 'prop-types'
 import { useBrowseContext } from '../../context/browseContext'
+import MoviePlayer from '../player/MoviePlayer'
 
 const BrowseContent = () => {
-    const { moviesData } = useBrowseContext()
+    const { movieByCategory, moviePlaying } = useBrowseContext()
 
     return (
         <Layout.Content className={'bg-[#141414] h-max'}>
-            {moviesData?.map(
+            {movieByCategory?.map(
                 (carousel, index) =>
                     carousel?.movies?.length > 5 && (
                         <div
@@ -27,6 +28,8 @@ const BrowseContent = () => {
                     )
             )}
             <MovieModal />
+
+            {moviePlaying && <MoviePlayer />}
         </Layout.Content>
     )
 }

@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Card, Col, Row, Space, Typography } from 'antd'
 import { episodes } from '../../../../resource/browse/episodes'
 import CardCover from './CardCover'
 import CardDes from './CardDes'
+import { useBrowseContext } from '../../../../context/browseContext'
+import _ from 'lodash'
 
 const Suggest = () => {
-    const rows = Math.ceil(episodes.length / 3)
+    const suggestCount = 15
+    const { movieByCategory } = useBrowseContext()
+    const allMovieData = useMemo(() => {
+        return movieByCategory?.flatMap((category) => category?.movies)
+    }, [movieByCategory])
+
+    const suggestMovies = useMemo(() => {
+        return _.uniqWith(
+            allMovieData,
+            (movie1, movie2) => movie1.id === movie2.id
+        ).slice(0, suggestCount)
+    }, [allMovieData])
+
+    const rows = Math.ceil(suggestMovies.length / 3)
 
     return (
         <div>
@@ -13,7 +28,7 @@ const Suggest = () => {
             <Space size={24} direction={'vertical'} className={'mt-4'}>
                 {Array.from({ length: rows }).map((_, index) => (
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 24 }} key={index}>
-                        {episodes
+                        {suggestMovies
                             .slice(index * 3, index * 3 + 3)
                             .map((episode, index) => (
                                 <Col span={8} key={index}>
@@ -30,7 +45,7 @@ const Suggest = () => {
                                                         'text-[#d2d2d2] text-lg pt-4 px-4 truncate'
                                                     }
                                                 >
-                                                    {episode.title}
+                                                    {episode?.title}
                                                 </Typography>
                                             }
                                             description={

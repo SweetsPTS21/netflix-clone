@@ -1,0 +1,66 @@
+.player-wrapper {
+  position: relative;
+}
+
+.control-container {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  flex-direction: column;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buffer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 20px;
+}
+
+.mid__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon__btn {
+  font-size: 2rem;
+  padding: 0 10px;
+  color: white;
+}
+
+.slider__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.control__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inner__controls {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  width: 50%;
+}
+
+.second__control {
+  display: flex;
+  align-items: center;
+}

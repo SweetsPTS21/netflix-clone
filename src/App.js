@@ -1,7 +1,7 @@
 import AppContextProvider from './context/appContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RootPage from './RootPage'
-import { BASE_HOME } from './custom/axios/config/Url'
+import { BASE_HOME } from './config/Url'
 import Error403 from './common/error/Error403'
 import './App.scss'
 import SettingRouter from './components/setting/Router'
