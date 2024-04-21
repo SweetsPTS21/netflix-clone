@@ -4,10 +4,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
 import { useBrowseContext } from '../../../context/browseContext'
+import screenful from 'screenfull'
 
 const CarouselPopover = ({ movie }) => {
-    const { setCurrentMovie, setOpenModal, setTrailerPlaying } =
-        useBrowseContext()
+    const {
+        setCurrentMovie,
+        setOpenModal,
+        setTrailerPlaying,
+        setMoviePlaying,
+        playerRef
+    } = useBrowseContext()
+
+    const toggleFullScreen = () => {
+        const delayFn = setTimeout(() => {
+            if (playerRef.current) {
+                screenful.toggle(playerRef.current)
+            }
+        }, 500)
+
+        return () => {
+            clearTimeout(delayFn)
+        }
+    }
 
     return (
         <div className={'w-[22rem] movie-details'}>
@@ -35,7 +53,13 @@ const CarouselPopover = ({ movie }) => {
                                 'flex items-center gap-4 text-white px-4'
                             }
                         >
-                            <ButtonIcon icon={'play'} onClick={() => {}} />
+                            <ButtonIcon
+                                icon={'play'}
+                                onClick={() => {
+                                    setMoviePlaying(true)
+                                    toggleFullScreen()
+                                }}
+                            />
                             <ButtonIcon
                                 icon={'plus'}
                                 tooltip={'Add to My List'}

@@ -1,4 +1,4 @@
-import { BASE_PATH } from '../../../custom/axios/config/Url'
+import { BASE_PATH } from '../../../config/Url'
 import { getLocalJwtToken, Netlfiz_axios } from '../../../custom/axios'
 
 const BASE_URL_LOGIN = `${BASE_PATH}/api/v1/auth/authenticate`

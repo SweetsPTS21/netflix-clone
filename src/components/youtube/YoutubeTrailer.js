@@ -3,9 +3,9 @@ import YouTube from 'react-youtube'
 import PropTypes from 'prop-types'
 import { useBrowseContext } from '../../context/browseContext'
 
-const YoutubeTrailer = ({ videoId, ...props }) => {
+const YoutubeTrailer = ({ videoId, opts, ...props }) => {
     const playerRef = useRef(null)
-    const { trailerPlaying } = useBrowseContext()
+    const { trailerPlaying, trailerMuted } = useBrowseContext()
 
     const handlePlay = () => {
         if (playerRef.current) {
@@ -16,6 +16,18 @@ const YoutubeTrailer = ({ videoId, ...props }) => {
     const handlePause = () => {
         if (playerRef.current) {
             playerRef.current.pauseVideo()
+        }
+    }
+
+    const handleMute = () => {
+        if (playerRef.current) {
+            playerRef.current.mute()
+        }
+    }
+
+    const handleUnmute = () => {
+        if (playerRef.current) {
+            playerRef.current.unMute()
         }
     }
 
@@ -30,15 +42,26 @@ const YoutubeTrailer = ({ videoId, ...props }) => {
         }
     }, [trailerPlaying])
 
+    useEffect(() => {
+        if (
+            trailerMuted &&
+            playerRef.current &&
+            playerRef.current.isMuted() === false
+        ) {
+            handleMute()
+        } else if (
+            !trailerMuted &&
+            playerRef.current &&
+            playerRef.current.isMuted() === true
+        ) {
+            handleUnmute()
+        }
+    }, [trailerMuted])
+
     return (
         <YouTube
             videoId={videoId}
-            opts={{
-                playerVars: {
-                    autoplay: 0, // Set autoplay to 0 to disable autoplay
-                    controls: 1 // Show controls
-                }
-            }}
+            opts={opts}
             onReady={onPlayerReady}
             {...props}
         />
@@ -46,11 +69,23 @@ const YoutubeTrailer = ({ videoId, ...props }) => {
 }
 
 YoutubeTrailer.propTypes = {
-    videoId: PropTypes.string.isRequired
+    videoId: PropTypes.string.isRequired,
+    opts: PropTypes.object
 }
 
 YoutubeTrailer.defaultProps = {
-    videoId: 'ndl1W4ltcmg'
+    videoId: 'ndl1W4ltcmg',
+    opts: {
+        height: '512',
+        width: '850',
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            rel: 0,
+            disablekb: 1,
+            iv_load_policy: 3
+        }
+    }
 }
 
 export default YoutubeTrailer

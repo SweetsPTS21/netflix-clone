@@ -8,7 +8,7 @@ import {
 import { loginTypes } from '../../../actions/login/Types'
 import { message } from 'antd'
 import Cookies from 'js-cookie'
-import { BASE_HOME } from '../../../../custom/axios/config/Url'
+import { BASE_HOME } from '../../../../config/Url'
 import { clearLocalData } from '../../../../utils/localDataUtils'
 
 function* onLoginStartAsync(action) {

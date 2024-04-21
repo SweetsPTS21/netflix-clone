@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Button, Divider, Modal } from 'antd'
-import witcher from '../../../assets/img/witcher.jpg'
 import MovieInfo from './info'
 import Episodes from './episodes'
 import About from './about'
@@ -9,11 +8,31 @@ import ButtonIcon from '../../../custom/button/ButtonIcon'
 import Suggest from './suggest'
 import { useBrowseContext } from '../../../context/browseContext'
 import YoutubeTrailer from '../../youtube/YoutubeTrailer'
+import screenful from 'screenfull'
 
 const MovieModal = () => {
-    const [mute, setMute] = useState(false)
-    const { currentMovie, openModal, setOpenModal, setTrailerPlaying } =
-        useBrowseContext()
+    const {
+        currentMovie,
+        openModal,
+        setOpenModal,
+        setTrailerPlaying,
+        trailerMuted,
+        setTrailerMuted,
+        setMoviePlaying,
+        playerRef
+    } = useBrowseContext()
+
+    const toggleFullScreen = () => {
+        const delayFn = setTimeout(() => {
+            if (playerRef.current) {
+                screenful.toggle(playerRef.current)
+            }
+        }, 500)
+
+        return () => {
+            clearTimeout(delayFn)
+        }
+    }
 
     return (
         <Modal
@@ -47,22 +66,19 @@ const MovieModal = () => {
             <div className={'flex flex-col'}>
                 <div className={'flex gap-4 relative'}>
                     <div className={'w-full h-[32rem] rounded-lg bg-[#333]'}>
-                        <YoutubeTrailer
-                            videoId={currentMovie?.trailer}
-                            opts={{
-                                height: '512',
-                                width: '850',
-                                playerVars: {
-                                    autoplay: 1
-                                }
-                            }}
-                        />
+                        <YoutubeTrailer videoId={currentMovie?.trailer} />
                     </div>
                     <div className={'movie-actions'}>
                         <div className={'flex gap-4'}>
                             <Button
                                 size={'large'}
                                 className={'btn-browse-light rounded'}
+                                onClick={() => {
+                                    setOpenModal(null)
+                                    setTrailerPlaying(false)
+                                    setMoviePlaying(true)
+                                    toggleFullScreen()
+                                }}
                             >
                                 <div
                                     className={
@@ -86,17 +102,17 @@ const MovieModal = () => {
                             <ButtonIcon icon={'like'} tooltip={'I Like It'} />
                         </div>
                         <div>
-                            {mute ? (
+                            {trailerMuted ? (
                                 <ButtonIcon
                                     icon={'mute'}
                                     tooltip={'Mute'}
-                                    onClick={() => setMute(!mute)}
+                                    onClick={() => setTrailerMuted(false)}
                                 />
                             ) : (
                                 <ButtonIcon
                                     icon={'sound'}
                                     tooltip={'Audio and Subtitles'}
-                                    onClick={() => setMute(!mute)}
+                                    onClick={() => setTrailerMuted(true)}
                                 />
                             )}
                         </div>

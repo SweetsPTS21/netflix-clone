@@ -14,13 +14,19 @@ const CardCover = ({ episode }) => {
         setShowPlayButton(false)
     }
 
+    const image = episode?.images ? episode?.images[0] : witcher
+
     return (
         <div
-            className={'relative'}
+            className={'relative h-[157px]'}
             onMouseOver={() => onMouseOver(episode)}
             onMouseLeave={() => onMouseLeave()}
         >
-            <img src={witcher} alt={'movie'} className={'w-full rounded-lg'} />
+            <img
+                src={image}
+                alt={'movie'}
+                className={'w-full h-full rounded-lg'}
+            />
             {showPlayButton && (
                 <div className={'absolute top-[26%] left-[40%]'}>
                     <ButtonIcon
