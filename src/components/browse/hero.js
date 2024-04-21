@@ -4,8 +4,13 @@ import heroBG from '../../assets/img/hero.jpg'
 import heroContent from '../../assets/img/hero2.png'
 import { CaretRightFilled, InfoCircleOutlined } from '@ant-design/icons'
 import Carousels from './carousel/Carousels'
+import PropTypes from 'prop-types'
 
-const BrowseHero = () => {
+const BrowseHero = ({
+    dataCarousel,
+    openMovieDetails,
+    setOpenMovieDetails
+}) => {
     return (
         <Layout.Content
             className={'bg-[#141414]'}
@@ -13,12 +18,6 @@ const BrowseHero = () => {
                 height: 'calc(100vh - 64px)'
             }}
         >
-            <div
-                className={'browse-bg hero-image'}
-                style={{
-                    backgroundImage: `url(${heroBG})`
-                }}
-            ></div>
             <div className={'browse-hero'}>
                 <div className={'max-w-[500px]'}>
                     <img src={heroContent} alt={'hero'} />
@@ -62,10 +61,20 @@ const BrowseHero = () => {
                 </div>
             </div>
             <div className={'carousel-root carousel-container'}>
-                <Carousels />
+                <Carousels
+                    data={dataCarousel[0]?.data}
+                    title={'Match to you'}
+                    setOpenModal={setOpenMovieDetails}
+                />
             </div>
         </Layout.Content>
     )
+}
+
+BrowseHero.propTypes = {
+    dataCarousel: PropTypes.object,
+    openMovieDetails: PropTypes.bool,
+    setOpenMovieDetails: PropTypes.func
 }
 
 export default BrowseHero

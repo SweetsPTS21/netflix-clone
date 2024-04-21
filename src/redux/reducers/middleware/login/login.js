@@ -1,47 +1,38 @@
 import { call, fork, put, takeEvery } from '@redux-saga/core/effects'
-import { getToken, logout, signIn } from '../../../../api/login/api'
+import { getMe, logout, signIn } from '../../../../api/common/login/api'
 import {
-    getTokenSuccess,
+    clearLogin,
     loginError,
     loginSuccess
 } from '../../../actions/login/actions'
-import { loginTypes } from '../../../actions/login/types'
+import { loginTypes } from '../../../actions/login/Types'
 import { message } from 'antd'
 import Cookies from 'js-cookie'
-import { BASE_DOMAIN, BASE_HOME } from '../../../../custom/axios/config/Url'
+import { BASE_HOME } from '../../../../custom/axios/config/Url'
+import { clearLocalData } from '../../../../utils/localDataUtils'
 
 function* onLoginStartAsync(action) {
     try {
-        const { username, password, rememberMe } = action
+        const { email, password, rememberMe } = action
+        const response = yield call(signIn, email, password, rememberMe)
 
-        const responseOauth2 = yield call(getToken)
-
-        if (responseOauth2.status === 200) {
-            yield put(getTokenSuccess(responseOauth2.data))
-            localStorage.setItem(
-                'oauth2Token',
-                JSON.stringify(responseOauth2.data)
-            )
-        }
-
-        const response = yield call(signIn, username, password, rememberMe)
         if (response.status === 200) {
             Cookies.set('accessToken', response.data.accessToken, {
                 expires: 2592
             })
+            Cookies.set('refreshToken', response.data.refreshToken, {
+                expires: 2592
+            })
 
-            const newOauth2 = yield call(getToken)
-            if (responseOauth2.status === 200) {
-                yield put(getTokenSuccess(newOauth2.data))
-                localStorage.setItem(
-                    'oauth2Token',
-                    JSON.stringify(newOauth2.data)
-                )
+            localStorage.setItem('jwtToken', JSON.stringify(response.data))
+
+            const me = yield call(getMe)
+            if (me.status === 200) {
+                yield put(loginSuccess(me.data))
             }
-            yield put(loginSuccess())
         }
     } catch (error) {
-        yield put(loginError(error?.response?.data))
+        yield put(loginError(error?.message))
         message.error('Sai tên người dùng hoặc mật khẩu. Vui lòng thử lại!')
     }
 }
@@ -52,12 +43,17 @@ function* onLogin() {
 
 function* onLogoutStartAsync() {
     try {
-        yield call(logout)
-    } finally {
-        Cookies.remove('accessToken', { domain: BASE_DOMAIN })
-        window.localStorage.clear()
-        const pathname = encodeURIComponent(`${document.location.href}`)
-        window.location.href = `${BASE_HOME}login?redirect=${pathname.replaceAll('403', '')}`
+        const response = yield call(logout)
+
+        if (response.status === 200) {
+            clearLocalData()
+
+            yield put(clearLogin())
+
+            window.location.href = `${BASE_HOME}/login`
+        }
+    } catch (error) {
+        message.error('Đã có lỗi xảy ra. Vui lòng thử lại!')
     }
 }
 

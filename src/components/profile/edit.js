@@ -1,10 +1,12 @@
 import React from 'react'
 import { Button, Col, Form, Input, Modal, Row, Select } from 'antd'
 import { profiles } from '../../resource/profile/profile'
-import PropTypes from 'prop-types'
 import { EditOutlined } from '@ant-design/icons'
+import { useProfileContext } from '../../context/profileContext'
 
-const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
+const EditProfile = () => {
+    const { currentProfile, isEditing, setIsEditing, setEditProfile } =
+        useProfileContext()
     return (
         <Modal
             title={<p className={'text-2xl ml-4'}>Chỉnh sửa hồ sơ</p>}
@@ -24,8 +26,8 @@ const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
                         <div className={'relative'}>
                             <img
                                 className={'h-full w-full'}
-                                src={profile?.image}
-                                alt={profile?.name}
+                                src={currentProfile?.image}
+                                alt={currentProfile?.name}
                             />
                             <div
                                 className={'edit-profile'}
@@ -44,7 +46,7 @@ const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
                             <Form.Item
                                 label={'Tên'}
                                 name={'name'}
-                                initialValue={profile?.name}
+                                initialValue={currentProfile?.name}
                             >
                                 <Input
                                     size={'large'}
@@ -56,7 +58,7 @@ const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
                             <Form.Item
                                 label={'Ngôn ngữ'}
                                 name={'language'}
-                                initialValue={profile?.name}
+                                initialValue={currentProfile?.name}
                             >
                                 <Select size={'large'}>
                                     {profiles.map((profile) => (
@@ -118,18 +120,6 @@ const EditProfile = ({ profile, isEditing, setIsEditing, setEditProfile }) => {
             </Form>
         </Modal>
     )
-}
-
-EditProfile.propTypes = {
-    profile: PropTypes.object,
-    isEditing: PropTypes.bool,
-    setIsEditing: PropTypes.func,
-    setEditProfile: PropTypes.func
-}
-
-EditProfile.defaultProps = {
-    profile: {},
-    isEditing: false
 }
 
 export default EditProfile

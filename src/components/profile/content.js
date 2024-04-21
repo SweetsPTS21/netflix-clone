@@ -1,15 +1,21 @@
 import React from 'react'
-import { profiles } from '../../resource/profile/profile'
 import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { useAppContext } from '../../context/appContext'
+import { useProfileContext } from '../../context/profileContext'
+import defaultProfile from '../../assets/img/200.png'
 
-const ProfileContent = ({
-    editProfile,
-    setIsEditing,
-    setCurrProfile,
-    setEditProfile
-}) => {
+const ProfileContent = () => {
+    const { changeRequesting } = useAppContext()
+    const {
+        profiles,
+        editProfile,
+        setIsEditing,
+        setCurrProfile,
+        setEditProfile
+    } = useProfileContext()
+
     return (
         <div
             className={
@@ -18,36 +24,42 @@ const ProfileContent = ({
         >
             <h1 className={'text-6xl text-white'}>Ai đang xem?</h1>
             <div className={'list-profile'}>
-                {profiles.map((profile) => (
+                {profiles?.map((profile) => (
                     <div
                         key={profile.id}
                         className={'flex flex-col items-center'}
                     >
-                        <div className={'relative'}>
-                            <img
-                                className={'w-full h-full'}
-                                src={profile.image}
-                                alt={profile.name}
-                            />
-                            {editProfile && (
-                                <div
-                                    className={'edit-profile'}
-                                    style={{
-                                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-                                    }}
-                                >
+                        <Link
+                            to={'/browse'}
+                            onClick={() => changeRequesting(true)}
+                        >
+                            <div className={'relative'}>
+                                <img
+                                    className={'w-full h-full'}
+                                    src={profile.image || defaultProfile}
+                                    alt={profile.name}
+                                />
+                                {editProfile && (
                                     <div
-                                        className={'edit-outlined'}
-                                        onClick={() => {
-                                            setIsEditing(true)
-                                            setCurrProfile(profile)
+                                        className={'edit-profile'}
+                                        style={{
+                                            backgroundColor:
+                                                'rgba(0, 0, 0, 0.5)'
                                         }}
                                     >
-                                        <EditOutlined />
+                                        <div
+                                            className={'edit-outlined'}
+                                            onClick={() => {
+                                                setIsEditing(true)
+                                                setCurrProfile(profile)
+                                            }}
+                                        >
+                                            <EditOutlined />
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
+                                )}
+                            </div>
+                        </Link>
                         <p className={'text-white mt-4 text-xl truncate'}>
                             {profile?.name}
                         </p>
@@ -65,17 +77,6 @@ const ProfileContent = ({
             </div>
         </div>
     )
-}
-
-ProfileContent.propTypes = {
-    editProfile: PropTypes.bool,
-    setIsEditing: PropTypes.func,
-    setCurrProfile: PropTypes.func,
-    setEditProfile: PropTypes.func
-}
-
-ProfileContent.defaultProps = {
-    editProfile: false
 }
 
 export default ProfileContent

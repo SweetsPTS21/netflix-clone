@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Layout, Popover, Steps } from 'antd'
 import PropTypes from 'prop-types'
 import Step1 from './steps/step1'
 import Step2 from './steps/step2'
 import Step3 from './steps/step3'
 import SignupPlans from './plans'
+import { useDispatch } from 'react-redux'
+import { signupStart } from '../../redux/actions/signup/actions'
 
 const customDot = (dot, { status, index }) => (
     <Popover
@@ -19,8 +21,10 @@ const customDot = (dot, { status, index }) => (
 )
 
 const SignupContent = (props) => {
+    const dispatch = useDispatch()
     const [current, setCurrent] = useState(0)
     const [completed, setCompleted] = useState(false)
+    const [signupAccount, setSignupAccount] = useState([])
 
     const next = () => {
         setCurrent(current + 1)
@@ -33,7 +37,7 @@ const SignupContent = (props) => {
         },
         {
             title: 'Bước 2',
-            content: <Step2 onOk={next} />
+            content: <Step2 onOk={next} setSignupAccount={setSignupAccount} />
         },
         {
             title: 'Bước 3',
@@ -45,6 +49,17 @@ const SignupContent = (props) => {
         key: item.title,
         title: item.title
     }))
+
+    useEffect(() => {
+        if (completed && signupAccount) {
+            const firstName = signupAccount.firstName || 'Test'
+            const lastName = signupAccount.lastName || 'Test'
+            const email = signupAccount.email
+            const password = signupAccount.password
+
+            dispatch(signupStart(firstName, lastName, email, password))
+        }
+    }, [completed])
 
     return (
         <Layout.Content

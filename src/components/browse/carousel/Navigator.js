@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 const Navigator = ({ direction, page, carouselRef }) => {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [navStyle, setNavStyle] = useState({
+        color: 'white',
         fontSize: '2rem',
         fontWeight: 'bolder',
         transition: 'all 0.2s ease-in-out'

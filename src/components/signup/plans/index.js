@@ -3,8 +3,10 @@ import { Button, Card, Col, Row } from 'antd'
 import { plans } from '../../../resource/signup/signup'
 import CardTitle from './CardTitle'
 import CardDescription from './CardDes'
+import { useNavigate } from 'react-router-dom'
 
 const SignupPlans = () => {
+    const navigate = useNavigate()
     const [selectedPlan, setSelectedPlan] = useState(plans[0].id)
 
     return (
@@ -53,7 +55,14 @@ const SignupPlans = () => {
                 Xem trên 4 thiết bị khác nhau cùng lúc với gói Cao cấp, 2 với
                 gói Tiêu chuẩn và 1 với gói Cơ bản và Di động.
             </p>
-            <Button type={'primary'} size={'large'} className={'mt-8'}>
+            <Button
+                type={'primary'}
+                size={'large'}
+                className={'mt-8'}
+                onClick={() => {
+                    navigate('/profile')
+                }}
+            >
                 Tiếp theo
             </Button>
         </div>

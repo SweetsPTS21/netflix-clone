@@ -3,38 +3,56 @@ import witcher from '../../../assets/img/witcher.jpg'
 import React from 'react'
 import PropTypes from 'prop-types'
 import ButtonIcon from '../../../custom/button/ButtonIcon'
+import { useBrowseContext } from '../../../context/browseContext'
 
-const CarouselPopover = ({ movie, setOpenModal }) => {
+const CarouselPopover = ({ movie }) => {
+    const { setCurrentMovie, setOpenModal } = useBrowseContext()
+
     return (
         <div className={'w-[22rem] movie-details'}>
             <Card
                 bordered={false}
-                className={'w-full h-full rounded carousel-card'}
+                className={'w-full h-full rounded-lg carousel-card'}
                 cover={
                     <img
-                        src={witcher}
+                        src={
+                            movie?.images?.length > 0
+                                ? movie?.images[1]
+                                : witcher
+                        }
                         className={'w-full h-full'}
-                        alt={movie?.content}
+                        alt={movie?.title}
                     />
                 }
                 actions={[
-                    <div key={movie?.id} className={'flex justify-between'}>
+                    <div
+                        key={movie?.id}
+                        className={'flex justify-between py-4'}
+                    >
                         <div
                             className={
                                 'flex items-center gap-4 text-white px-4'
                             }
                         >
                             <ButtonIcon icon={'play'} onClick={() => {}} />
-                            <ButtonIcon icon={'plus'} onClick={() => {}} />
-                            <ButtonIcon icon={'like'} onClick={() => {}} />
+                            <ButtonIcon
+                                icon={'plus'}
+                                tooltip={'Add to My List'}
+                                onClick={() => {}}
+                            />
+                            <ButtonIcon
+                                icon={'like'}
+                                tooltip={'I like this'}
+                                onClick={() => {}}
+                            />
                         </div>
                         <div className={'text-white px-4'}>
                             <ButtonIcon
                                 icon={'down'}
+                                tooltip={'More Info'}
                                 onClick={() => {
-                                    if (setOpenModal) {
-                                        setOpenModal(true)
-                                    }
+                                    setCurrentMovie(movie)
+                                    setOpenModal(true)
                                 }}
                             />
                         </div>
@@ -44,7 +62,7 @@ const CarouselPopover = ({ movie, setOpenModal }) => {
                 <Card.Meta
                     description={
                         <div className={'flex flex-col p-4 text-white'}>
-                            <div className={'text-xl'}>{movie?.name}</div>
+                            <div className={'text-xl'}>{movie?.title}</div>
                             <div
                                 style={{
                                     display: 'flex',

@@ -3,12 +3,13 @@ import { Button, Form, Input } from 'antd'
 import { emailRegex } from '../../../resource/common/common'
 import PropTypes from 'prop-types'
 
-const Step2 = (props) => {
+const Step2 = ({ onOk, setSignupAccount }) => {
     const [form] = Form.useForm()
 
     const onFinish = (values) => {
-        if (props.onOk) {
-            props.onOk()
+        if (onOk) {
+            setSignupAccount(values)
+            onOk()
         }
     }
 
@@ -102,7 +103,8 @@ const Step2 = (props) => {
 }
 
 Step2.propTypes = {
-    onOk: PropTypes.func
+    onOk: PropTypes.func,
+    setSignupAccount: PropTypes.func
 }
 
 export default Step2

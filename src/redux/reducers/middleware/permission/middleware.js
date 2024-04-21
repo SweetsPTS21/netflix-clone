@@ -2,8 +2,8 @@ import { call, fork, put, takeEvery } from '@redux-saga/core/effects'
 import {
     setPermissionActionsError,
     setPermissionActionsSuccess
-} from '../../actions/permission/Action'
-import { layoutPermissionType } from '../../actions/permission/Type'
+} from '../../../actions/permission/Action'
+import { layoutPermissionType } from '../../../actions/permission/Type'
 
 function checkPermissionActionItemNew(item, module) {
     if (item.key === module) {
