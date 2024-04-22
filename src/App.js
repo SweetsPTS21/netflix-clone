@@ -11,6 +11,7 @@ import Profile from './components/profile'
 import Browse from './components/browse'
 import AuthedContextProvider from './context/authedContext'
 import Page403 from './common/error/Page403'
+import ManagementRouter from './router/management/router'
 
 function App() {
     return (
@@ -29,6 +30,10 @@ function App() {
                         <Route path="profile" element={<Profile />} />
                         <Route path="signup" element={<SignupPage />} />
                         <Route path="browse/*" element={<Browse />} />
+                        <Route
+                            path="management/*"
+                            element={<ManagementRouter />}
+                        />
                         <Route
                             path="403"
                             element={<Page403 href={BASE_HOME} />}
