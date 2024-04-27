@@ -1,7 +1,7 @@
 import AppContextProvider from './context/appContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RootPage from './RootPage'
-import { BASE_HOME } from './custom/axios/config/Url'
+import { BASE_HOME } from './config/Url'
 import Error403 from './common/error/Error403'
 import './App.scss'
 import SettingRouter from './components/setting/Router'
@@ -11,6 +11,7 @@ import Profile from './components/profile'
 import Browse from './components/browse'
 import AuthedContextProvider from './context/authedContext'
 import Page403 from './common/error/Page403'
+import ManagementRouter from './router/management/router'
 
 function App() {
     return (
@@ -29,6 +30,10 @@ function App() {
                         <Route path="profile" element={<Profile />} />
                         <Route path="signup" element={<SignupPage />} />
                         <Route path="browse/*" element={<Browse />} />
+                        <Route
+                            path="management/*"
+                            element={<ManagementRouter />}
+                        />
                         <Route
                             path="403"
                             element={<Page403 href={BASE_HOME} />}

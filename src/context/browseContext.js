@@ -3,13 +3,14 @@ import React, {
     useContext,
     useEffect,
     useMemo,
+    useRef,
     useState
 } from 'react'
 import { useAuthedContext } from './authedContext'
 import Page403 from '../common/error/Page403'
 import { useAppContext } from './appContext'
 import { useQuery } from '@apollo/client'
-import { GET_MOVIE_BY_CATEGORY, GET_MOVIES } from '../api/graphql/movie'
+import { GET_MOVIE_BY_CATEGORY } from '../api/graphql/movie'
 
 const BrowseContext = createContext({})
 
@@ -26,6 +27,11 @@ const BrowseContextProvider = ({ children }) => {
     } = useQuery(GET_MOVIE_BY_CATEGORY)
     const [currentMovie, setCurrentMovie] = useState(null)
     const [openModal, setOpenModal] = useState(false)
+
+    const [moviePlaying, setMoviePlaying] = useState(false)
+    const [trailerPlaying, setTrailerPlaying] = useState(false)
+    const [trailerMuted, setTrailerMuted] = useState(false)
+    const playerRef = useRef(null)
 
     console.log('currentMovie', currentMovie)
 
@@ -49,15 +55,32 @@ const BrowseContextProvider = ({ children }) => {
 
     const contextValue = useMemo(() => {
         return {
-            moviesData: movieData?.getMovieByCategory,
+            movieByCategory: movieData?.getMovieByCategory,
             movieLoading,
             movieError,
             currentMovie,
             setCurrentMovie,
             openModal,
-            setOpenModal
+            setOpenModal,
+            trailerPlaying,
+            setTrailerPlaying,
+            trailerMuted,
+            setTrailerMuted,
+            moviePlaying,
+            setMoviePlaying,
+            playerRef
         }
-    }, [movieData, movieLoading, movieError, currentMovie, openModal])
+    }, [
+        movieData,
+        movieLoading,
+        movieError,
+        currentMovie,
+        openModal,
+        trailerPlaying,
+        moviePlaying,
+        trailerMuted,
+        playerRef
+    ])
 
     return (
         !isRequesting &&

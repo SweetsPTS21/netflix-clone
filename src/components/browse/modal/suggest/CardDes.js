@@ -8,9 +8,9 @@ const CardDes = ({ episode }) => {
         <div className={'flex flex-col px-4 gap-2 text-[#d2d2d2]'}>
             <div className={'flex gap-2 justify-between items-center'}>
                 <div className={'flex gap-2'}>
-                    <p>{episode?.episode} episode</p>
-                    <p>{episode?.duration}</p>
-                    <p>{episode?.date}</p>
+                    <p>{episode?.country}</p>
+                    <p>{episode?.runtime}</p>
+                    <p>{episode?.year}</p>
                 </div>
                 <ButtonIcon
                     icon={'plus'}
@@ -20,11 +20,11 @@ const CardDes = ({ episode }) => {
             </div>
             <Typography.Paragraph
                 ellipsis={{
-                    rows: 5
+                    rows: 4
                 }}
                 className={'text-sm text-[#d2d2d2]'}
             >
-                {episode?.description}
+                {episode?.plot}
             </Typography.Paragraph>
         </div>
     )
