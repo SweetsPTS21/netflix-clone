@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Card, Flex } from 'antd'
 import witcher from '../../../assets/img/witcher.jpg'
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -28,82 +28,78 @@ const CarouselPopover = ({ movie }) => {
     }
 
     return (
-        <div className={'w-[22rem] movie-details'}>
-            <Card
-                bordered={false}
-                className={'w-full h-full rounded-lg carousel-card'}
-                cover={
+        <div className={'movie-details'}>
+            <Card bordered={false} className={'w-full h-full carousel-card'}>
+                <Flex vertical className={'h-full w-full'}>
                     <img
                         src={
                             movie?.images?.length > 0
                                 ? movie?.images[1]
                                 : witcher
                         }
-                        className={'w-full h-full'}
                         alt={movie?.title}
+                        className={'h-[60%]'}
+                        style={{
+                            objectFit: 'cover',
+                            borderTopLeftRadius: '6px',
+                            borderTopRightRadius: '6px'
+                        }}
                     />
-                }
-                actions={[
                     <div
-                        key={movie?.id}
-                        className={'flex justify-between py-4'}
+                        className={'p-4 text-white flex-1'}
+                        style={{
+                            borderBottomLeftRadius: '6px',
+                            borderBottomRightRadius: '6px'
+                        }}
                     >
+                        <div className={'text-xl mb-2'}>{movie?.title}</div>
                         <div
-                            className={
-                                'flex items-center gap-4 text-white px-4'
-                            }
+                            className={'mb-2'}
+                            style={{
+                                display: 'flex',
+                                fontSize: '1rem'
+                            }}
                         >
-                            <ButtonIcon
-                                icon={'play'}
-                                onClick={() => {
-                                    setMoviePlaying(true)
-                                    toggleFullScreen()
-                                }}
-                            />
-                            <ButtonIcon
-                                icon={'plus'}
-                                tooltip={'Add to My List'}
-                                onClick={() => {}}
-                            />
-                            <ButtonIcon
-                                icon={'like'}
-                                tooltip={'I like this'}
-                                onClick={() => {}}
-                            />
+                            <p>Comedy</p>
+                            <p className={'mx-2'}>•</p>
+                            <p>2021</p>
+                            <p className={'mx-2'}>•</p>
+                            <p>HD</p>
                         </div>
-                        <div className={'text-white px-4'}>
-                            <ButtonIcon
-                                icon={'down'}
-                                tooltip={'More Info'}
-                                onClick={() => {
-                                    setCurrentMovie(movie)
-                                    setOpenModal(true)
-                                    setTrailerPlaying(true)
-                                }}
-                            />
-                        </div>
-                    </div>
-                ]}
-            >
-                <Card.Meta
-                    description={
-                        <div className={'flex flex-col p-4 text-white'}>
-                            <div className={'text-xl'}>{movie?.title}</div>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    fontSize: '1rem'
-                                }}
-                            >
-                                <p>Comedy</p>
-                                <p className={'mx-2'}>•</p>
-                                <p>2021</p>
-                                <p className={'mx-2'}>•</p>
-                                <p>HD</p>
+                        <Flex justify={'space-between'} key={movie?.id}>
+                            <Flex gap={16} align={'center'}>
+                                <ButtonIcon
+                                    icon={'play'}
+                                    onClick={() => {
+                                        setMoviePlaying(true)
+                                        toggleFullScreen()
+                                    }}
+                                />
+                                <ButtonIcon
+                                    icon={'plus'}
+                                    tooltip={'Add to My List'}
+                                    onClick={() => {}}
+                                />
+                                <ButtonIcon
+                                    icon={'like'}
+                                    tooltip={'I like this'}
+                                    onClick={() => {}}
+                                />
+                            </Flex>
+                            <div className={'text-white px-4'}>
+                                <ButtonIcon
+                                    icon={'down'}
+                                    tooltip={'More Info'}
+                                    onClick={() => {
+                                        setCurrentMovie(movie)
+                                        setOpenModal(true)
+                                        setTrailerPlaying(true)
+                                    }}
+                                />
                             </div>
-                        </div>
-                    }
-                />
+                        </Flex>
+                    </div>
+                </Flex>
             </Card>
         </div>
     )

@@ -137,6 +137,7 @@
 @media only screen and (min-width: 900px) {
   .movie-details {
     width: 18rem;
+    height: 16rem;
     position: absolute;
     top: -2rem;
     left: -2rem;
@@ -147,7 +148,8 @@
 
 @media only screen and (min-width: 1600px) {
   .movie-details {
-    width: 22rem;
+    width: 26rem;
+    height: 25rem;
     position: absolute;
     top: -1rem;
     left: -2.5rem;

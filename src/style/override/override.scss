@@ -48,26 +48,26 @@
 }
 
 //=========================== select override =====================//
-.ant-select-single .ant-select-selector {
-    color: #fff;
-}
+//.ant-select-single .ant-select-selector {
+//    color: #fff;
+//}
+//
+//.ant-select .ant-select-arrow {
+//    color: #fff;
+//}
+//
+//.ant-select-selection-item {
+//    color: #fff;
+//}
 
-.ant-select .ant-select-arrow {
-    color: #fff;
-}
-
-.ant-select-selection-item {
-    color: #fff;
-}
-
-.ant-form-vertical .ant-form-item-label >label {
-    color: #fff;
-}
+//.ant-form-vertical .ant-form-item-label >label {
+//    color: #fff;
+//}
 
 //=========================== card override =====================//
-.ant-card {
-    border-radius: 4px;
-}
+//.ant-card {
+//    border-radius: 4px;
+//}
 
 .ant-card .ant-card-head {
     padding: 0;
@@ -82,10 +82,14 @@
     border-radius: 4px;
 }
 
-//=========================== modal override =====================//
-.ant-modal .ant-modal-content {
-    padding: 0;
+.movie-details .ant-card .ant-card-body {
+    height: 100%;
 }
+
+//=========================== modal override =====================//
+//.ant-modal .ant-modal-content {
+//    padding: 0;
+//}
 
 .ant-modal-close-x {
     color: #fff;

@@ -22,19 +22,19 @@ function getItem(label, key, icon, children) {
 
 const items = [
     getItem('Home', '1', <PieChartOutlined />),
-    getItem('Movie', '2', <DesktopOutlined />, [
-        getItem('Management', '3'),
-        getItem('Statistic', '4')
+    getItem('Movie', 'sub1', <DesktopOutlined />, [
+        getItem('Management', '2'),
+        getItem('Statistic', '3')
     ]),
-    getItem('User', 'sub1', <UserOutlined />, [
-        getItem('Management', '5'),
-        getItem('Statistic', '6')
+    getItem('User', 'sub2', <UserOutlined />, [
+        getItem('Management', '4'),
+        getItem('Statistic', '5')
     ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [
-        getItem('Team 1', '7'),
-        getItem('Team 2', '8')
+    getItem('Team', 'sub3', <TeamOutlined />, [
+        getItem('Team 1', '6'),
+        getItem('Team 2', '7')
     ]),
-    getItem('Files', '9', <FileOutlined />)
+    getItem('Files', '8', <FileOutlined />)
 ]
 
 const renderContent = (key) => {

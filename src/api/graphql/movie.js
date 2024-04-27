@@ -60,3 +60,9 @@ export const GET_MOVIE_BY_CATEGORY = gql`
         }
     }
 `
+
+export const UPDATE_MOVIE = gql`
+    mutation UpdateMovie($movieId: ID!, $movie: MovieInput!) {
+        updateMovie(movieId: $movieId, movie: $movie)
+    }
+`
